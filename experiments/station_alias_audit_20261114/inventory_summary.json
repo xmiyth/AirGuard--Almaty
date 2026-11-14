@@ -1,0 +1,18 @@
+{
+  "raw_rows": 727357,
+  "raw_station_ids": 239,
+  "raw_start": "2017-03-22",
+  "raw_end": "2026-11-13",
+  "daily_rows": 29957,
+  "daily_station_ids": 191,
+  "daily_start": "2020-04-10",
+  "daily_end": "2026-11-13",
+  "screened_pairs": 32,
+  "raw_duplicate_station_timestamp": 0,
+  "subhour_rows": 197,
+  "registry_missing_ids": [],
+  "upstream_period_rows_for_local_ids": 0,
+  "max_station_coordinate_displacement_km": 15.312260412586408,
+  "protected_files_unchanged": true,
+  "status": "exploratory: existing test labels inspected previously; no fresh holdout certified"
+}

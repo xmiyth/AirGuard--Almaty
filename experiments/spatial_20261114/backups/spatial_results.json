@@ -1,0 +1,18 @@
+{
+  "evaluation": "Held-out stations AND later dates; same-day spatial interpolation",
+  "train_until_exclusive": "2025-04-18",
+  "test_from": "2025-04-18",
+  "training_station_count": 148,
+  "heldout_station_count": 37,
+  "training_examples": 9434,
+  "test_examples": 2112,
+  "test_unique_sites": 34,
+  "baseline_idw_mae": 6.304,
+  "ml_corrected_mae": 11.934,
+  "baseline_idw_rmse": 9.37,
+  "ml_corrected_rmse": 20.203,
+  "improvement_pct": -89.31,
+  "recommended_visualization": "IDW baseline (ML did not beat it)",
+  "source": "AirData.kz; low-cost station PM2.5 readings; 12+ valid hourly samples per station-day",
+  "limitations": "Same-day estimates rely on measurements from reference stations; not tomorrow forecasts. Stations have differing accuracy. Spatial errors can be highly correlated. Split uses seeded station holdout and temporal holdout."
+}

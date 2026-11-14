@@ -1,0 +1,15 @@
+{
+  "airguard.py": "670d0926a9e6813b8057a837d18c1e75e15f9a1b461aabaf067e3b27907f9a04",
+  "app.py": "565f7073a669ee0a33349cc62af9599e488a0f833d0c588b2aad4d171cf7012f",
+  "requirements.txt": "d6c9562bbe24f4964034c97c6d8b0b3d305f2f69eee28982d7430a50b98f8493",
+  "spatial_ai.py": "1b59adeb216ebeb58615a99579638f1fa0f14ec9da02d71cc47d425e9219020d",
+  "station_map.py": "2e42efae91929622fcbe3547f00106ac45fa1981c534efd838883e9d12bf0b63",
+  "data\\almaty_stations_pm25.csv.gz": "69f2dccf5feb827c24f2f50a0031c0aee1ad4d5344ff310a2d0634e551e55947",
+  "data\\daily.csv": "7276c628e9ed6c954d668bd4574699a56f9ec2d2b70e7b7d82be399519db2886",
+  "data\\model.joblib": "698e83f50f78075cb13dfce852279abbcde5579678bca38028ac46bc5394ec65",
+  "data\\results.json": "3a63e80b5eb181f72e84a5651710f3931f8eb04ef58e906df57f2542b689c71b",
+  "data\\spatial_model.joblib": "4095209c0ecde4017379c8e805a62e77b62e347114421ae9fb37dc51f9d849fe",
+  "data\\spatial_results.json": "bdf882972667b9aba1a51ea479d9a13fa9d6c70eb3d75946a4b02db0e413052d",
+  "data\\spatial_test_predictions.csv": "9b8ea2a7203441d393f9bf3ce8e011d78a0eb39e000043421e1a7ef5c96257e0",
+  "data\\test_predictions.csv": "3abab50893da259b70ddb5b40791ac2667c9ddbb43bfded59dbc6154b9b1b04c"
+}

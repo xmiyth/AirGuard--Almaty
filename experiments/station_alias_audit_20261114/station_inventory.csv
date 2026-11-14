@@ -1,0 +1,240 @@
+station_id,names,sources,lat,lon,coordinate_variants,max_displacement_km,registry_name,operator,raw_rows,raw_start,raw_end,subhour_rows,duplicate_station_hours,daily_rows,daily_start,daily_end,original_partition,first_validation_partition,previous_validation_partition
+ag_166942,"Talǵar, Gagarin atyndaǵy №8 mektep",airgradient,43.2938,77.2347,1,0.0,"Talǵar, Gagarin atyndaǵy №8 mektep",Almaty Air Initiative,1714,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_166943,Almaty Arena,airgradient,43.2639,76.8193,1,0.0,Almaty Arena,Almaty Air Initiative,1729,2026-03-19,2026-11-13,0,0,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167207,"Panfilovo, №33 mektep",airgradient,43.3838,77.1163,1,0.0,"Panfilovo, №33 mektep",Almaty Air Initiative,1678,2026-03-18,2026-11-13,1,1,71,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167209,Köktem şipazhaiy,airgradient,43.2018,76.9368,1,0.0,Köktem şipazhaiy,Almaty Air Initiative,1696,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167210,№193 mektep,airgradient,43.373,76.9431,1,0.0,№193 mektep,Almaty Air Initiative,1538,2026-03-19,2026-11-13,0,0,65,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167213,Şuhov at. skver,airgradient,43.2747,76.9808,1,0.0,Şuhov at. skver,Almaty Air Initiative,1732,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167214,Maqataev – Muratbaev,airgradient,43.2618,76.9186,1,0.0,Maqataev – Muratbaev,Almaty Air Initiative,1732,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167215,Orbita 1 (Navoi k-si) ,airgradient,43.2035,76.8869,1,0.0,Orbita 1 (Navoi k-si) ,Almaty Air Initiative,1680,2026-03-18,2026-11-13,2,2,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167216,Mega Park,airgradient,43.2634,76.9319,1,0.0,Mega Park,Almaty Air Initiative,1730,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167218,Ermensai (Juldyz – Ortalyq) ,airgradient,43.168,76.9163,1,0.0,Ermensai (Juldyz – Ortalyq) ,Almaty Air Initiative,808,2026-10-08,2026-11-13,0,0,35,2026-10-09,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167221,Bekmahanov – Süyinbai,airgradient,43.3581,76.9794,2,1.4874366907762613,Bekmahanov – Süyinbai,Almaty Air Initiative,1707,2026-03-18,2026-11-13,1,1,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167254,Ainabulaq (Jumabayev k-si) ,airgradient,43.3238,76.9111,1,0.0,Ainabulaq (Jumabayev k-si) ,Almaty Air Initiative,1732,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167255,Almağül (Serkebaev – Strauss),airgradient,43.2049,76.8999,1,0.0,Almağül (Serkebaev – Strauss),Almaty Air Initiative,1710,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167256,Wellness Club Luxor ,airgradient,43.2083,76.96651,1,0.0,Wellness Club Luxor ,Almaty Air Initiative,795,2026-10-08,2026-11-13,0,0,34,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167257,Abai – Seifullin ,airgradient,43.241181,76.933831,1,0.0,Abai – Seifullin ,Almaty Air Initiative,1729,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167258,"Kókqaınar auyly, №29 mektep",airgradient,43.450782,76.943029,1,0.0,"Kókqaınar auyly, №29 mektep",Almaty Air Initiative,1621,2026-03-18,2026-11-13,1,1,69,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167259,Kerei Janibek k-si – Gornyi t.,airgradient,43.2362,76.9652,1,0.0,Kerei Janibek k-si – Gornyi t.,Almaty Air Initiative,1714,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167263,Ayajan (Talas k-si),airgradient,43.3179,76.9374,1,0.0,Ayajan (Talas k-si),Almaty Air Initiative,1708,2026-03-18,2026-11-13,2,2,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167264,Vagjanov - Jansugurov k-si ,airgradient,43.3054,76.9312,1,0.0,Vagjanov - Jansugurov k-si ,Almaty Air Initiative,1684,2026-03-18,2026-11-13,1,1,71,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167265,Jas Qanat,airgradient,43.3251,76.9866,1,0.0,Jas Qanat,Almaty Air Initiative,1727,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167266,"Qyzylqaırat , №19 mektep gimnaziya",airgradient,43.303307,77.185303,1,0.0,"Qyzylqaırat , №19 mektep gimnaziya",Almaty Air Initiative,1621,2026-03-19,2026-11-11,0,0,68,2026-03-19,2026-11-11,train,inactive_or_test,inactive_or_test
+ag_167267,№163 litsei,airgradient,43.2204,76.9544,1,0.0,№163 litsei,Almaty Air Initiative,1505,2026-03-18,2026-11-13,2,2,68,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167269,Hunter shooting club,airgradient,43.38317038623055,76.98219747156817,1,0.0,Hunter shooting club,Almaty Air Initiative,807,2026-10-08,2026-11-13,0,0,34,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167270,Altai 2,airgradient,43.3503,76.9888,1,0.0,Altai 2,Almaty Air Initiative,1649,2026-03-18,2026-11-13,2,2,70,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167271,Sharipov St.- Raimbek St. cross,airgradient,43.2456,76.8348,1,0.0,Sharipov St.- Raimbek St. cross,Almaty Air Initiative,1466,2026-03-18,2026-11-13,1,1,62,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167415,Turğyt Özal – Yesenzhanov,airgradient,43.2406,76.8824,1,0.0,Turğyt Özal – Yesenzhanov,Almaty Air Initiative,1706,2026-03-18,2026-11-13,1,1,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167417,Jambyl – Nurmaqov,airgradient,43.2452,76.9075,1,0.0,Jambyl – Nurmaqov,Almaty Air Initiative,1730,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167418,№170 Böbekjai balabaqşasy,airgradient,43.3115,76.9015,1,0.0,№170 Böbekjai balabaqşasy,Almaty Air Initiative,1731,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167419,Tastybulaq (Kazgiprozem),airgradient,43.1729,76.8154,1,0.0,Tastybulaq (Kazgiprozem),Almaty Air Initiative,1634,2026-03-18,2026-11-13,2,2,70,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167420,Duman (Arys k-si) ,airgradient,43.2777,77.0055,1,0.0,Duman (Arys k-si) ,Almaty Air Initiative,1712,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167422,"Belbulak, №32 mektep",airgradient,43.3121,77.098,1,0.0,"Belbulak, №32 mektep",Almaty Air Initiative,1672,2026-03-18,2026-11-13,1,1,71,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167423,Asqarov k-si,airgradient,43.1952,76.8645,1,0.0,Asqarov k-si,Almaty Air Initiative,1634,2026-03-18,2026-11-13,1,1,69,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167424,5-şi şağyn audan ,airgradient,43.2337,76.8642,1,0.0,5-şi şağyn audan ,Almaty Air Initiative,1731,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167428,Şanyraq 2 (Baldáuren k-si) ,airgradient,43.2904,76.8507,1,0.0,Şanyraq 2 (Baldáuren k-si) ,Almaty Air Initiative,1491,2026-03-18,2026-11-13,2,2,63,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167430,AKPTiT kolledj ,airgradient,43.3958,76.9865,1,0.0,AKPTiT kolledj ,Almaty Air Initiative,1730,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167431,Samğau ş.a. (Kokorai k-si) ,airgradient,43.2706,76.8612,1,0.0,Samğau ş.a. (Kokorai k-si) ,Almaty Air Initiative,1723,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167432,Qazybek bi – Nurmaqov,airgradient,43.2537,76.9064,1,0.0,Qazybek bi – Nurmaqov,Almaty Air Initiative,1726,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167433,Sairan (Ötegen batyr k-si),airgradient,43.2414,76.8608,1,0.0,Sairan (Ötegen batyr k-si),Almaty Air Initiative,1728,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167435,Süyinbai 487,airgradient,43.358,76.9792,2,0.030975731380066093,Süyinbai 487,Almaty Air Initiative,1683,2026-03-18,2026-11-13,1,1,71,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167436,Qazaqfilm (Baiydosov k-si),airgradient,43.1933,76.9035,1,0.0,Qazaqfilm (Baiydosov k-si),Almaty Air Initiative,1643,2026-03-18,2026-11-13,1,1,70,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167437,Aqbulaq (Baiqonyrov k-si) ,airgradient,43.2636,76.8336,1,0.0,Aqbulaq (Baiqonyrov k-si) ,Almaty Air Initiative,1727,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167580,№12 Qalalyq emhana,airgradient,43.2355,76.9113,1,0.0,№12 Qalalyq emhana,Almaty Air Initiative,1714,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167583,Malaya Stanitsa (Bestujev k-si),airgradient,43.281123,76.970665,1,0.0,Malaya Stanitsa (Bestujev k-si),Almaty Air Initiative,375,2026-10-13,2026-11-13,0,0,16,2026-10-13,2026-11-13,not_in_original_split,inactive_or_test,inactive_or_test
+ag_167584,GATOB,airgradient,43.2497,76.9458,1,0.0,GATOB,Almaty Air Initiative,1708,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167585,"QazTSIK, №40 mektep",airgradient,43.3782,76.8364,1,0.0,"QazTSIK, №40 mektep",Almaty Air Initiative,1724,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167586,"Tuıimebaev auyly, №19 mektep ",airgradient,43.4134,76.914,1,0.0,"Tuıimebaev auyly, №19 mektep ",Almaty Air Initiative,1669,2026-03-18,2026-11-13,2,2,71,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167588,Prezident sayabağı,airgradient,43.1944,76.8876,1,0.0,Prezident sayabağı,Almaty Air Initiative,1647,2026-03-18,2026-11-13,2,2,72,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167589,Qalalyq kardiologiya ortalyğı,airgradient,43.2536,76.9283,1,0.0,Qalalyq kardiologiya ortalyğı,Almaty Air Initiative,1732,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167590,№86 mektep-gimnaziya,airgradient,43.219879,76.859159,1,0.0,№86 mektep-gimnaziya,Almaty Air Initiative,1718,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167591,SDU,airgradient,43.208174,76.668446,1,0.0,SDU,Almaty Air Initiative,204,2026-03-18,2026-03-27,1,1,8,2026-03-19,2026-03-26,not_in_original_split,inactive_or_test,inactive_or_test
+ag_167592,Mamyr 1,airgradient,43.2114,76.8434,1,0.0,Mamyr 1,Almaty Air Initiative,1732,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167593,№4 Qalalyq emhana (Orbita 3),airgradient,43.2019,76.8766,1,0.0,№4 Qalalyq emhana (Orbita 3),Almaty Air Initiative,1703,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167594,№178 mektep,airgradient,43.2499,76.8143,1,0.0,№178 mektep,Almaty Air Initiative,1701,2026-03-18,2026-11-13,1,1,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167595,Narxoz University ,airgradient,43.214577,76.871985,1,0.0,Narxoz University ,Almaty Air Initiative,1546,2026-03-18,2026-11-12,1,1,67,2026-03-19,2026-11-12,test_inspected,inactive_or_test,inactive_or_test
+ag_167596,Ońtústik saıabaǵy | MOST hub ,airgradient,43.2103,76.9083,1,0.0,Ońtústik saıabaǵy | MOST hub ,Almaty Air Initiative,1697,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167597,№42 mektep,airgradient,43.2373,76.8333,1,0.0,№42 mektep,Almaty Air Initiative,1710,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167598,№116 mektep,airgradient,43.2255,76.8685,1,0.0,№116 mektep,Almaty Air Initiative,1712,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167600,"Baıkent, №10 orta mektep",airgradient,43.474545,76.807185,1,0.0,"Baıkent, №10 orta mektep",Almaty Air Initiative,1427,2026-03-18,2026-11-13,1,1,62,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167601,"Kyrgauyldy auyly, Orta mektep",airgradient,43.1793,76.7701,1,0.0,"Kyrgauyldy auyly, Orta mektep",Almaty Air Initiative,1717,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167602,№47 mektep,airgradient,43.1919,76.9681,1,0.0,№47 mektep,Almaty Air Initiative,1710,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167604,Almaty oblystyq №1 balalar uyi,airgradient,43.201,76.9136,1,0.0,Almaty oblystyq №1 balalar uyi,Almaty Air Initiative,1726,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167605,Qoşmambet orta mektebi,airgradient,43.3322,76.6498,1,0.0,Qoşmambet orta mektebi,Almaty Air Initiative,1506,2026-03-18,2026-11-09,2,2,65,2026-03-19,2026-11-09,train,inactive_or_test,inactive_or_test
+ag_167606,№190 mektep ,airgradient,43.1573,76.9017,1,0.0,№190 mektep ,Almaty Air Initiative,1470,2026-03-18,2026-11-13,2,2,63,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167607,"Irgeli, orta mektep",airgradient,43.2421,76.7622,1,0.0,"Irgeli, orta mektep",Almaty Air Initiative,710,2026-10-10,2026-11-12,0,0,30,2026-10-10,2026-11-12,train,inactive_or_test,inactive_or_test
+ag_167608,Ermensai (Araily k-si),airgradient,43.1885,76.9304,1,0.0,Ermensai (Araily k-si),Almaty Air Initiative,1688,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167610,Alatau kenti (Jetbaev k-si),airgradient,43.3615,77.1367,1,0.0,Alatau kenti (Jetbaev k-si),Almaty Air Initiative,1619,2026-03-18,2026-11-13,1,1,69,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167613,"Tuzdybastau, №13 mektep ",airgradient,43.3239,77.0644,1,0.0,"Tuzdybastau, №13 mektep ",Almaty Air Initiative,1562,2026-03-18,2026-11-13,2,2,67,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167614,Al Farabi Universiteti,airgradient,43.2267,76.9217,1,0.0,Al Farabi Universiteti,Almaty Air Initiative,1680,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167615,№7 Su Elektr Stansiäsy,airgradient,43.1658,76.8962,1,0.0,№7 Su Elektr Stansiäsy,Almaty Air Initiative,1717,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167616,№63 orta mektep,airgradient,43.2169,76.8901,1,0.0,№63 orta mektep,Almaty Air Initiative,1721,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167617,"Gūldala, №21 mektep",airgradient,43.3516,77.0573,1,0.0,"Gūldala, №21 mektep",Almaty Air Initiative,1536,2026-03-18,2026-11-13,2,2,65,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167618,Ortalyq demalys sayabağy,airgradient,43.2645,76.9727,1,0.0,Ortalyq demalys sayabağy,Almaty Air Initiative,1702,2026-03-18,2026-11-13,1,1,72,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167619,Tereńqur ,airgradient,43.2179,76.9693,1,0.0,Tereńqur ,Almaty Air Initiative,1513,2026-03-18,2026-11-13,1,1,67,2026-03-20,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167620,Perzenthana (Basenov 2a),airgradient,43.2221,76.8994,1,0.0,Perzenthana (Basenov 2a),Almaty Air Initiative,1351,2026-03-27,2026-11-13,0,0,57,2026-03-28,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167621,"Shamalǵan, Tleubaev atyndaǵy mektep",airgradient,43.374,76.6266,1,0.0,"Shamalǵan, Tleubaev atyndaǵy mektep",Almaty Air Initiative,1575,2026-03-18,2026-11-13,1,1,67,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167622,"Bereke auyly, Beisebaev atyndaǵy orta mektep",airgradient,43.3711,76.7114,1,0.0,"Bereke auyly, Beisebaev atyndaǵy orta mektep",Almaty Air Initiative,1569,2026-03-18,2026-11-13,1,1,67,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167623,"Qaskelen, Belinskiı atyndaǵy mektep",airgradient,43.1952,76.6209,1,0.0,"Qaskelen, Belinskiı atyndaǵy mektep",Almaty Air Initiative,1121,2026-04-10,2026-11-13,0,0,48,2026-04-10,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167630,№153 mektep-gimnaziya,airgradient,43.2209,76.8362,1,0.0,№153 mektep-gimnaziya,Almaty Air Initiative,1670,2026-03-18,2026-11-13,1,1,71,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167632,Bökeikhanov – Aerodromnyi t. k-si,airgradient,43.274,76.9108,1,0.0,Bökeikhanov – Aerodromnyi t. k-si,Almaty Air Initiative,826,2026-10-08,2026-11-13,0,0,35,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167633,Raiymbek - Jangeldin,airgradient,43.2714,76.9568,1,0.0,Raiymbek - Jangeldin,Almaty Air Initiative,870,2026-03-18,2026-11-13,1,1,37,2026-03-23,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167634,Kensai (Şoqai k-si),airgradient,43.2662,76.986,1,0.0,Kensai (Şoqai k-si),Almaty Air Initiative,1702,2026-03-18,2026-11-13,2,2,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167635,Jañaturmys (Altynsarin k-si),airgradient,43.174919,76.788939,1,0.0,Jañaturmys (Altynsarin k-si),Almaty Air Initiative,922,2026-03-18,2026-11-12,1,1,39,2026-03-24,2026-11-12,train,inactive_or_test,inactive_or_test
+ag_167637,№142 mektep,airgradient,43.3611,76.9966,1,0.0,№142 mektep,Almaty Air Initiative,1733,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167638,"Kiši Baıserke, №40 mektep",airgradient,43.4877,77.0611,1,0.0,"Kiši Baıserke, №40 mektep",Almaty Air Initiative,765,2026-10-08,2026-11-13,0,0,33,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167639,№85 mektep ,airgradient,43.3549,76.9524,1,0.0,№85 mektep ,Almaty Air Initiative,1628,2026-03-18,2026-11-13,2,2,69,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167641,№61 mektep,airgradient,43.3299,76.9477,1,0.0,№61 mektep,Almaty Air Initiative,1660,2026-03-18,2026-11-13,1,1,70,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167642,Almaty şipazhaiy,airgradient,43.1759,76.8726,1,0.0,Almaty şipazhaiy,Almaty Air Initiative,1699,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167643,№170 mektep,airgradient,43.3364,76.9775,1,0.0,№170 mektep,Almaty Air Initiative,1731,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167644,Rahat Konditerlik fabrikasy,airgradient,43.263037,76.957877,1,0.0,Rahat Konditerlik fabrikasy,Almaty Air Initiative,1679,2026-03-18,2026-11-13,2,2,71,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167645,№98 mektep,airgradient,43.2886,76.9765,1,0.0,№98 mektep,Almaty Air Initiative,1730,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167646,№16 äskeri qalaşıq (Süyinbai d.),airgradient,43.3695,76.9869,1,0.0,№16 äskeri qalaşıq (Süyinbai d.),Almaty Air Initiative,1732,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167647,№11 orta mektep,airgradient,43.3454,76.9588,1,0.0,№11 orta mektep,Almaty Air Initiative,1660,2026-03-18,2026-11-13,2,2,70,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167649,Nurtau golf club,airgradient,43.1934,76.8186,1,0.0,Nurtau golf club,Almaty Air Initiative,1254,2026-03-18,2026-11-13,2,2,54,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167650,№200 mektep-gimnaziya,airgradient,43.198,76.7905,1,0.0,№200 mektep-gimnaziya,Almaty Air Initiative,1720,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167651,Saiyalı (Avtotsón) ,airgradient,43.3038,76.837,1,0.0,Saiyalı (Avtotsón) ,Almaty Air Initiative,1708,2026-03-18,2026-11-13,2,2,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167652,Saudakent (Kazakov k-si),airgradient,43.2668,76.8949,1,0.0,Saudakent (Kazakov k-si),Almaty Air Initiative,1658,2026-03-18,2026-11-13,1,1,70,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167654,№31 orta mektep,airgradient,43.3253,76.9676,1,0.0,№31 orta mektep,Almaty Air Initiative,1733,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167655,Jumysşy kenti (Krylov k-si),airgradient,43.2735,76.8904,1,0.0,Jumysşy kenti (Krylov k-si),Almaty Air Initiative,1732,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167656,№162 mektep,airgradient,43.3118,76.9557,1,0.0,№162 mektep,Almaty Air Initiative,1729,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167657,Tastybulaq (ST Qanat) ,airgradient,43.1636,76.8097,1,0.0,Tastybulaq (ST Qanat) ,Almaty Air Initiative,828,2026-03-18,2026-04-25,1,1,37,2026-03-19,2026-04-25,test_inspected,inactive_or_test,inactive_or_test
+ag_167658,Tausamaly,airgradient,43.1732,76.8317,1,0.0,Tausamaly,Almaty Air Initiative,993,2026-03-18,2026-10-20,2,2,42,2026-03-19,2026-10-14,test_inspected,inactive_or_test,inactive_or_test
+ag_167659,Nuriddin (Arystanbab k-si) ,airgradient,43.1868,76.8599,1,0.0,Nuriddin (Arystanbab k-si) ,Almaty Air Initiative,1644,2026-03-18,2026-11-13,2,2,70,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167660,Baým toǵaıy,airgradient,43.2939,76.9449,1,0.0,Baým toǵaıy,Almaty Air Initiative,1152,2026-03-18,2026-11-13,2,2,49,2026-03-23,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167661,№206 mektep-gimnaziya,airgradient,43.208327,76.819198,1,0.0,№206 mektep-gimnaziya,Almaty Air Initiative,1714,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167662,"Ötegen Batyr, №24 litsei",airgradient,43.4143,77.0315,1,0.0,"Ötegen Batyr, №24 litsei",Almaty Air Initiative,1707,2026-03-18,2026-11-13,1,1,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167663,№17 mektep,airgradient,43.3144,76.9657,1,0.0,№17 mektep,Almaty Air Initiative,1730,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167664,№44 mektep-gimnaziya,airgradient,43.3439,77.0072,1,0.0,№44 mektep-gimnaziya,Almaty Air Initiative,830,2026-10-08,2026-11-13,0,0,35,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167665,№112 mektep,airgradient,43.2937,76.9154,1,0.0,№112 mektep,Almaty Air Initiative,1585,2026-03-18,2026-11-13,2,2,67,2026-03-23,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167668,№157 mektep,airgradient,43.2197,76.8015,1,0.0,№157 mektep,Almaty Air Initiative,1701,2026-03-18,2026-11-13,2,2,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167669,№156 mektep ,airgradient,43.3224,76.8863,1,0.0,№156 mektep ,Almaty Air Initiative,1518,2026-03-18,2026-11-13,1,1,64,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167670,Sūltan-Qorǵan (Bespaqov k-si),airgradient,43.3167,76.9266,1,0.0,Sūltan-Qorǵan (Bespaqov k-si),Almaty Air Initiative,1732,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167672,№168 Balabaqşa,airgradient,43.3105,76.8742,1,0.0,№168 Balabaqşa,Almaty Air Initiative,1590,2026-03-18,2026-11-13,2,2,66,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167673,№179 mektep,airgradient,43.3382,76.8995,1,0.0,№179 mektep,Almaty Air Initiative,1730,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167674,№166 litsei,airgradient,43.2604,76.8725,1,0.0,№166 litsei,Almaty Air Initiative,1731,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167675,№14 mektep ,airgradient,43.2607,76.8858,1,0.0,№14 mektep ,Almaty Air Initiative,1683,2026-03-18,2026-11-13,2,2,71,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167676,Ortalyq stadion,airgradient,43.2397,76.9241,1,0.0,Ortalyq stadion,Almaty Air Initiative,1209,2026-03-18,2026-11-13,2,2,51,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167677,"Janatalap, №52 orta mektep",airgradient,43.4737,76.9641,1,0.0,"Janatalap, №52 orta mektep",Almaty Air Initiative,1676,2026-03-18,2026-11-13,2,2,71,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167678,"Talǵar, ortalyq aýdandyq aýrýhana ",airgradient,43.3175,77.2293,1,0.0,"Talǵar, ortalyq aýdandyq aýrýhana ",Almaty Air Initiative,1725,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167679,Avtomekhanikalyq kolledj ,airgradient,43.3049,76.9187,1,0.0,Avtomekhanikalyq kolledj ,Almaty Air Initiative,1713,2026-03-18,2026-11-13,2,2,72,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167680,№151 mektep,airgradient,43.2811,76.8806,1,0.0,№151 mektep,Almaty Air Initiative,1729,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167681,№182 mektep-gimnaziya,airgradient,43.281,76.824,1,0.0,№182 mektep-gimnaziya,Almaty Air Initiative,1159,2026-03-18,2026-11-12,1,1,54,2026-03-19,2026-11-12,train,inactive_or_test,inactive_or_test
+ag_167682,Dostyq ş.a. (Muzammil meşiti),airgradient,43.2239,76.8291,1,0.0,Dostyq ş.a. (Muzammil meşiti),Almaty Air Initiative,1149,2026-03-19,2026-11-13,0,0,49,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167683,№128 Balabaqşasy (Şekspir k-si),airgradient,43.3575,76.9354,1,0.0,№128 Balabaqşasy (Şekspir k-si),Almaty Air Initiative,1707,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167684,Sairan (Qarasai Batyr k-si),airgradient,43.2466,76.8681,1,0.0,Sairan (Qarasai Batyr k-si),Almaty Air Initiative,809,2026-10-08,2026-11-13,0,0,35,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167687,№174 mektep-gimnaziya,airgradient,43.21574,76.791652,1,0.0,№174 mektep-gimnaziya,Almaty Air Initiative,1716,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167688,№198 mektep,airgradient,43.3183,76.9783,1,0.0,№198 mektep,Almaty Air Initiative,1682,2026-03-18,2026-11-13,1,1,71,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167689,№22 Qalalyq emhana,airgradient,43.3046,76.853,1,0.0,№22 Qalalyq emhana,Almaty Air Initiative,1709,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167690,Alma City 5,airgradient,43.2167,76.7743,1,0.0,Alma City 5,Almaty Air Initiative,826,2026-10-09,2026-11-13,0,0,35,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167691,Zhas Qanat aud. (Khmelnitskiy k-si.),airgradient,43.3177,76.9839,1,0.0,Zhas Qanat aud. (Khmelnitskiy k-si.),Almaty Air Initiative,1730,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_167693,Jetisu 2,airgradient,43.2227,76.8467,1,0.0,Jetisu 2,Almaty Air Initiative,1730,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167694,Aport Mall East,airgradient,43.3148,77.0216,1,0.0,Aport Mall East,Almaty Air Initiative,1731,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167695,"Abaı auyly, №2 mektep",airgradient,43.2015,76.7636,1,0.0,"Abaı auyly, №2 mektep",Almaty Air Initiative,888,2026-03-18,2026-04-25,2,2,38,2026-03-19,2026-04-25,train,inactive_or_test,inactive_or_test
+ag_167700,Qarağaily (Nadirov k-si),airgradient,43.1833,76.8416,1,0.0,Qarağaily (Nadirov k-si),Almaty Air Initiative,1198,2026-03-19,2026-11-13,0,0,51,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167701,"Isaevo auyly, Isaeva atyndaǵy mektep",airgradient,43.4012,76.7513,1,0.0,"Isaevo auyly, Isaeva atyndaǵy mektep",Almaty Air Initiative,1634,2026-03-19,2026-11-12,0,0,69,2026-03-19,2026-11-12,train,inactive_or_test,inactive_or_test
+ag_167702,Bögenbai Batyr – Vereŝagin,airgradient,43.2487,76.887,1,0.0,Bögenbai Batyr – Vereŝagin,Almaty Air Initiative,1733,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167706,Kojamqulov - Qarasai batyr,airgradient,43.25005,76.9179,1,0.0,Kojamqulov - Qarasai batyr,Almaty Air Initiative,1731,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167707,№154 mektep,airgradient,43.2509,76.8338,1,0.0,№154 mektep,Almaty Air Initiative,1585,2026-03-18,2026-11-13,2,2,67,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_167709,№171 mektep,airgradient,43.2718,76.8449,1,0.0,№171 mektep,Almaty Air Initiative,1731,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_170428,Süıınbai – Musorgskiı,airgradient,43.2851,76.9481,1,0.0,Süıınbai – Musorgskiı,Almaty Air Initiative,1440,2026-03-18,2026-11-13,1,1,61,2026-03-20,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_170429,Duman 2 (Mercur Grad) ,airgradient,43.2885,77.004,1,0.0,Duman 2 (Mercur Grad) ,Almaty Air Initiative,1722,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_170430,№184 mektep,airgradient,43.2465,76.7918,1,0.0,№184 mektep,Almaty Air Initiative,828,2026-10-08,2026-11-13,0,0,35,2026-10-09,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_171445,Samal 1,airgradient,43.2358,76.9518,1,0.0,Samal 1,Almaty Air Initiative,1707,2026-03-18,2026-11-13,2,2,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_171446,Baitursynov k-si,airgradient,43.231494,76.934146,1,0.0,Baitursynov k-si,Almaty Air Initiative,1720,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_171447,Zharokov - Mynbayev st.,airgradient,43.2374,76.8995,1,0.0,Zharokov - Mynbayev st.,Almaty Air Initiative,1631,2026-03-18,2026-11-13,1,1,69,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_171448,Almalybaq,airgradient,43.222398,76.678183,1,0.0,Almalybaq,Almaty Air Initiative,1692,2026-03-18,2026-11-11,1,1,71,2026-03-19,2026-11-11,train,inactive_or_test,inactive_or_test
+ag_171449,Zhambyl,airgradient,43.2734,76.6685,1,0.0,Zhambyl,Almaty Air Initiative,721,2026-03-18,2026-04-24,1,1,30,2026-03-19,2026-04-24,train,inactive_or_test,inactive_or_test
+ag_173261,"Aqbulak, 7",airgradient,43.2427,76.8175,1,0.0,"Aqbulak, 7",Almaty Air Initiative,1731,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+ag_173265,№107 mektep,airgradient,43.2958,76.9374,1,0.0,№107 mektep,Almaty Air Initiative,614,2026-03-18,2026-04-25,2,2,26,2026-03-23,2026-04-25,train,inactive_or_test,inactive_or_test
+ag_173269,Almaty Museum of Arts ,airgradient,43.2267,76.9492,1,0.0,Almaty Museum of Arts ,Almaty Air Initiative,1703,2026-03-18,2026-11-13,1,1,73,2026-03-19,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+ag_173630,Medeu,airgradient,43.1642,77.0494,1,0.0,Medeu,Almaty Air Initiative,1384,2026-03-18,2026-11-12,2,2,61,2026-03-19,2026-11-12,train,inactive_or_test,inactive_or_test
+ag_180811,"Almaty, Dostyk 300/60",airgradient,43.2226,76.9759,1,0.0,"Almaty, Dostyk 300/60",Almaty Air Initiative,1259,2026-03-20,2026-11-13,0,0,53,2026-04-04,2026-11-10,test_inspected,inactive_or_test,inactive_or_test
+ag_186392,Nurly-Tan 37,airgradient,43.213101,76.7950629,1,0.0,Nurly-Tan 37,Almaty Air Initiative,1726,2026-03-18,2026-11-13,4,4,73,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+airkaz_1,Сейфуллина - Дулатова (TS225957),airkaz,43.313,76.939,1,0.0,Сейфуллина - Дулатова (TS225957),AirKaz,1192,2017-03-24,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_10,Тулебаева-Джамбула,airkaz,43.248,76.949,1,0.0,Тулебаева-Джамбула,AirKaz,562,2017-07-12,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_104,Сатпаева-Луганского (TS485314),airkaz,43.241,76.96,1,0.0,Сатпаева-Луганского (TS485314),AirKaz,861,2018-04-26,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_105,Абай,airkaz,43.214,76.75,1,0.0,Абай,AirKaz,811,2017-10-15,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_106,Шанырак 2,airkaz,43.297,76.852,1,0.0,Шанырак 2,AirKaz,53,2018-07-19,2020-08-18,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_108,Жана Кайрат,airkaz,43.312,77.001,1,0.0,Жана Кайрат,AirKaz,768,2018-09-27,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_11,Аскарова,airkaz,43.189,76.868,1,0.0,Аскарова,AirKaz,514,2017-07-17,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_12,Каменское плато,airkaz,43.177,76.966,1,0.0,Каменское плато,AirKaz,1188,2017-07-15,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_13,Фурманова-Ташкентская,airkaz,43.269,76.944,1,0.0,Фурманова-Ташкентская,AirKaz,605,2017-07-16,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_14,Мамыр,airkaz,43.216,76.848,1,0.0,Мамыр,AirKaz,1023,2017-07-17,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_15,"ЖК ""Асыл Арман""",airkaz,43.231,76.754,1,0.0,"ЖК ""Асыл Арман""",AirKaz,26,2017-07-19,2020-11-30,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_16,Жана Куат,airkaz,43.397,77.027,1,0.0,Жана Куат,AirKaz,1156,2017-10-25,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_17,Баганашыл,airkaz,43.195,76.915,1,0.0,Баганашыл,AirKaz,283,2018-01-19,2020-08-30,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_18,Кыргаулды,airkaz,43.172,76.736,1,0.0,Кыргаулды,AirKaz,1021,2018-03-08,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_19,Военный городок,airkaz,43.369,76.987,1,0.0,Военный городок,AirKaz,506,2018-03-15,2020-12-20,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_2,Альфараби - Маркова,airkaz,43.224,76.938,1,0.0,Альфараби - Маркова,AirKaz,1149,2017-03-22,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_20,мкрн Карасу,airkaz,43.337,76.904,1,0.0,мкрн Карасу,AirKaz,704,2018-03-28,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_3,Абая - Тлендиева,airkaz,43.24,76.874,1,0.0,Абая - Тлендиева,AirKaz,1160,2017-03-27,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_30369354,"Тулебаева, 82",airkaz,43.2576,76.9484,1,0.0,"Тулебаева, 82",AirKaz,139,2020-04-30,2020-10-07,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_3269728,KazGU2,airkaz,43.206,76.9,1,0.0,KazGU2,AirKaz,397,2019-09-14,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_34703847,ул.Туруспекова,airkaz,43.178,76.87,1,0.0,ул.Туруспекова,AirKaz,4,2020-09-29,2020-10-07,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_36200067,Айнабулак-3,airkaz,43.324,76.919,1,0.0,Айнабулак-3,AirKaz,164,2020-04-24,2020-10-07,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_36671067,Таусамал,airkaz,43.202,76.812,1,0.0,Таусамал,AirKaz,20,2020-09-17,2020-10-07,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_37052366,ВОАД,airkaz,43.248,76.981,1,0.0,ВОАД,AirKaz,17,2020-09-18,2020-10-07,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_38834077,Dual1,airkaz,43.23,76.9326,1,0.0,Dual1,AirKaz,277,2019-12-04,2020-12-21,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_39168240,Карасу 2,airkaz,43.3388,76.9032,1,0.0,Карасу 2,AirKaz,161,2020-04-19,2020-10-06,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_39379024,Муканова 159,airkaz,43.2572,76.914,1,0.0,Муканова 159,AirKaz,120,2020-06-04,2020-10-03,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_4,Парк Горького,airkaz,43.265,76.973,1,0.0,Парк Горького,AirKaz,881,2017-03-26,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_4372603,Акан Серы (AUA),airkaz,43.31,76.943,1,0.0,Акан Серы (AUA),AirKaz,139,2020-04-01,2020-09-15,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_4438736,Мамыр 1 (AUA),airkaz,43.213,76.846,1,0.0,Мамыр 1 (AUA),AirKaz,58,2020-03-28,2020-06-11,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_4439094,ул.Аскарова (AUA),airkaz,43.1855,76.8716,1,0.0,ул.Аскарова (AUA),AirKaz,19,2020-03-26,2020-04-26,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_4439475,Курчатова 1 (AUA),airkaz,43.254,76.855,1,0.0,Курчатова 1 (AUA),AirKaz,165,2020-04-01,2020-10-07,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_5,ТолеБи - Байзакова,airkaz,43.253,76.91,1,0.0,ТолеБи - Байзакова,AirKaz,1243,2017-05-09,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_5901326,ул. Татибекова,airkaz,43.2795,76.9677,1,0.0,ул. Татибекова,AirKaz,3,2020-09-10,2020-10-07,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_5917712,KazGU1,airkaz,43.223,76.919,1,0.0,KazGU1,AirKaz,328,2019-09-13,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_6,Розыбакиева - Байкадамова,airkaz,43.214,76.893,1,0.0,Розыбакиева - Байкадамова,AirKaz,1249,2017-05-03,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_7,Кок Кайнар,airkaz,43.296,76.844,1,0.0,Кок Кайнар,AirKaz,999,2017-06-07,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_7723955,ул.Камышинская (AUA),airkaz,43.3526,76.9993,1,0.0,ул.Камышинская (AUA),AirKaz,32,2020-05-09,2020-06-23,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_8,Рыскулова - Момышулы,airkaz,43.254,76.82,1,0.0,Рыскулова - Момышулы,AirKaz,748,2017-06-15,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+airkaz_9,Ерменсай,airkaz,43.174,76.917,1,0.0,Ерменсай,AirKaz,1232,2017-05-09,2020-12-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+kgmt_155,НИИ астрофизики им. В.Г. Фесенкова,kgmt,43.177127,76.9661,1,0.0,НИИ астрофизики им. В.Г. Фесенкова,KazHydroMet,28731,2021-03-24,2026-05-30,0,0,1221,2021-03-24,2025-09-09,train,fit,fit
+kgmt_157,"Розыбакиева, 270",kgmt,43.214015,76.893051,1,0.0,"Розыбакиева, 270",KazHydroMet,27379,2021-03-24,2026-10-09,0,0,1174,2021-03-24,2026-10-09,train,fit,fit
+kgmt_159,"Карасу, 6-я, 122",kgmt,43.338996,76.903239,1,0.0,"Карасу, 6-я, 122",KazHydroMet,31013,2021-03-26,2025-12-17,0,0,1310,2021-03-26,2025-12-17,train,validation,validation
+kgmt_25,PCP #2,kgmt | kgmt_auto,43.356554,76.87545,1,0.0,PCP #2,KazHydroMet,13363,2020-07-12,2023-12-22,0,0,566,2020-07-14,2023-08-19,train,fit,fit
+kgmt_26,PCP #29,kgmt | kgmt_auto,43.338052,76.952083,1,0.0,PCP #29,KazHydroMet,33396,2020-07-12,2025-10-19,0,0,1410,2020-07-14,2025-10-19,train,fit,fit
+kgmt_27,PCP #31,kgmt | kgmt_auto,43.180754,76.888068,1,0.0,PCP #31,KazHydroMet,30691,2020-07-12,2026-11-12,0,0,1305,2020-07-14,2026-11-12,train,fit,fit
+kgmt_28,PCP #30,kgmt | kgmt_auto,43.298778,76.851498,1,0.0,PCP #30,KazHydroMet,16276,2020-07-12,2022-09-06,0,0,688,2020-07-14,2022-09-06,test_inspected,inactive_or_test,inactive_or_test
+kgmt_299,Есенов үйі. №221 Рысқұлова,kgmt,43.291511,76.951184,1,0.0,Есенов үйі. №221 Рысқұлова,KazHydroMet,24939,2021-12-15,2025-12-17,0,0,1048,2021-12-16,2025-12-17,train,fit,fit
+kgmt_300,Ерменсай Шие үйі. №3,kgmt,43.177869,76.918205,1,0.0,Ерменсай Шие үйі. №3,KazHydroMet,24281,2021-12-15,2026-10-16,0,0,1031,2021-12-17,2026-10-12,train,validation,validation
+kgmt_55,PCP #27,kgmt | kgmt_auto,43.271831,76.844818,1,0.0,PCP #27,KazHydroMet,8557,2020-07-12,2025-03-03,0,0,385,2020-07-14,2022-12-22,train,fit,fit
+kgmt_56,PCP #1,kgmt | kgmt_auto,43.220247,76.926401,1,0.0,PCP #1,KazHydroMet,24233,2020-07-12,2025-12-14,0,0,1033,2020-07-14,2025-12-14,train,fit,fit
+kgmt_57,PCP #4,kgmt | kgmt_auto,43.374376,76.992008,1,0.0,PCP #4,KazHydroMet,6847,2020-11-01,2023-02-24,0,0,284,2020-11-02,2023-02-24,train,validation,validation
+kgmt_58,PCP #3,kgmt | kgmt_auto,43.258748,76.81706,1,0.0,PCP #3,KazHydroMet,16044,2020-07-12,2026-11-11,0,0,679,2020-07-14,2026-11-11,train,fit,fit
+kgmt_59,PCP #6,kgmt | kgmt_auto,43.301062,76.925444,1,0.0,PCP #6,KazHydroMet,29652,2020-07-12,2026-04-01,0,0,1261,2020-07-14,2026-04-01,test_inspected,inactive_or_test,inactive_or_test
+kgmt_60,PCP #5,kgmt | kgmt_auto,43.288125,76.990615,1,0.0,PCP #5,KazHydroMet,19566,2020-07-12,2023-12-14,0,0,823,2020-07-14,2023-12-14,train,validation,validation
+kgmt_97,PCP #28,kgmt | kgmt_auto,43.360683,77.006407,1,0.0,PCP #28,KazHydroMet,30819,2020-07-12,2026-11-13,0,0,1312,2020-07-14,2026-11-13,test_inspected,inactive_or_test,inactive_or_test
+oaq_2812550,Almaty Arena,openaq,43.26408,76.81688,1,0.0,Almaty Arena,Clarity,4378,2024-04-24,2024-12-05,1,1,206,2024-04-27,2024-11-24,train,fit,fit
+oaq_2812831,"Road, Almaty Industrial Zone",openaq,43.31652,76.80429,1,0.0,"Road, Almaty Industrial Zone",Clarity,2335,2024-04-24,2024-08-27,0,0,110,2024-04-27,2024-08-16,train,validation,validation
+oaq_2819013,Nurly street,openaq,43.2288,76.77749,1,0.0,Nurly street,Clarity,1144,2024-04-28,2025-10-07,0,0,25,2024-11-28,2025-02-23,train,fit,fit
+oaq_6152135,Almaty,openaq,43.232633,76.878267,1,0.0,Almaty,AirGradient,1,2025-12-04,2025-12-04,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+oaq_6161924,Almaty Arena,openaq,43.2639,76.8193,2,0.032933372166402776,Almaty Arena,AirGradient,2305,2025-12-12,2026-03-19,0,0,97,2025-12-12,2026-03-18,train,inactive_or_test,inactive_or_test
+oaq_6175391,Almaty 2 t/zh vokzaly,openaq,43.2734,76.939,1,0.0,Almaty 2 t/zh vokzaly,AirGradient,1992,2025-12-23,2026-03-17,0,0,83,2025-12-24,2026-03-17,test_inspected,inactive_or_test,inactive_or_test
+oaq_6175508,Almaty oblystyq №1 balalar uyi,openaq,43.201,76.9136,1,0.0,Almaty oblystyq №1 balalar uyi,AirGradient,60,2026-01-18,2026-03-19,0,0,3,2026-01-18,2026-01-20,not_in_original_split,inactive_or_test,inactive_or_test
+oaq_6175521,Almaty şipazhaiy,openaq,43.1759,76.8726,1,0.0,Almaty şipazhaiy,AirGradient,60,2026-01-18,2026-03-19,0,0,3,2026-01-18,2026-01-20,not_in_original_split,inactive_or_test,inactive_or_test
+oaq_6186958,"Almaty, Dostyk 300/60",openaq,43.2226,76.9759,1,0.0,"Almaty, Dostyk 300/60",AirGradient,8,2026-01-20,2026-03-16,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+oaq_6198159,Almaty Museum of Arts ,openaq,43.2267,76.9492,1,0.0,Almaty Museum of Arts ,AirGradient,59,2026-01-18,2026-03-19,0,0,3,2026-01-18,2026-01-20,not_in_original_split,inactive_or_test,inactive_or_test
+oaq_8876,Almaty,openaq,43.252855,76.93118,1,0.0,Almaty,AirNow,36025,2020-04-09,2025-11-14,0,0,1547,2020-04-10,2025-11-14,train,validation,validation
+waqi_-114487,Розыбакиева - Байкадамова,waqi,43.214,76.893,1,0.0,Розыбакиева - Байкадамова,AirKaz.org,128,2026-03-19,2026-10-09,0,0,6,2026-03-19,2026-10-09,not_in_original_split,inactive_or_test,inactive_or_test
+waqi_-114496,Каменское плато,waqi,43.177,76.966,1,0.0,Каменское плато,AirKaz.org,1338,2026-03-18,2026-07-15,0,0,56,2026-03-19,2026-05-17,train,inactive_or_test,inactive_or_test
+waqi_-114514,Жана Кайрат,waqi,43.312,77.001,1,0.0,Жана Кайрат,AirKaz.org,1968,2026-03-18,2026-10-19,0,0,84,2026-03-19,2026-10-18,train,inactive_or_test,inactive_or_test
+waqi_-115249,Карасу 2,waqi,43.3388,76.9032,1,0.0,Карасу 2,AirKaz.org,1,2026-01-31,2026-01-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+waqi_-162757,ул.Туруспекова,waqi,43.178,76.87,1,0.0,ул.Туруспекова,AirKaz.org,1,2026-01-31,2026-01-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+waqi_-224707,Есенова,waqi,43.293,76.951,1,0.0,Есенова,AirKaz.org,1,2026-01-31,2026-01-31,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+waqi_-366844,Звездная поляна,waqi,43.1333,76.8695,1,0.0,Звездная поляна,AirKaz.org,751,2026-03-18,2026-10-18,0,0,32,2026-03-19,2026-10-18,train,inactive_or_test,inactive_or_test
+waqi_-370492,Dostyk Avenue,waqi,43.24740500169,76.95690894212,1,0.0,Dostyk Avenue,Citizen Science project sensor.community,1806,2026-04-09,2026-11-11,0,0,76,2026-04-09,2026-11-11,test_inspected,inactive_or_test,inactive_or_test
+waqi_-410893,Алматы санаторий,waqi,43.176,76.872,1,0.0,Алматы санаторий,Citizen Science project sensor.community,1273,2026-03-18,2026-08-11,0,0,54,2026-03-19,2026-08-10,test_inspected,inactive_or_test,inactive_or_test
+waqi_-464161,Жунисова улица,waqi,43.218,76.79,1,0.0,Жунисова улица,Citizen Science project sensor.community,3,2026-02-05,2026-10-30,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+waqi_-517444,"Алатау ауданы, Момышұлы көшесіндегі «Алматы аренасы» мұз айдыны",waqi,43.263798333333,76.8147375,1,0.0,"Алатау ауданы, Момышұлы көшесіндегі «Алматы аренасы» мұз айдыны",Қазгидромет - Kazhydromet,1,2026-02-11,2026-02-11,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+waqi_-520300,Abay avenue,waqi,43.226,76.862,1,0.0,Abay avenue,Citizen Science project sensor.community,2065,2026-03-21,2026-11-12,0,0,90,2026-03-21,2026-11-12,train,inactive_or_test,inactive_or_test
+waqi_-572143,Navoi,waqi,43.18379599530255,76.95268469864789,4,5.431530212693089,Navoi,Gaia realtime air quality monitoring network,2597,2026-03-18,2026-11-13,0,0,112,2026-03-19,2026-11-13,train,inactive_or_test,inactive_or_test
+waqi_-700999,улица Таджикская,waqi,43.26,76.878,1,0.0,улица Таджикская,Citizen Science project sensor.community,1,2026-02-13,2026-02-13,0,0,0,,,not_in_original_split,inactive_or_test,inactive_or_test
+waqi_100156,almaty,waqi,43.333146807972,76.981811849668,2,15.312260412586408,almaty,AirNet - aiqcn.org - waqi.info,16344,2023-10-29,2026-01-28,0,0,683,2023-10-30,2026-01-28,train,fit,fit
+waqi_1003,Almaty,waqi,43.21888062732633,76.93365433699681,1,0.0,Almaty,Gaia realtime air quality monitoring network,1598,2025-11-23,2026-01-28,0,0,67,2025-11-23,2026-01-28,train,inactive_or_test,inactive_or_test
+waqi_12774,"Almaty, US Embassy, Kazakhstan (Алматы, АҚШ елшілігі)",waqi,43.222,76.851,1,0.0,"Almaty, US Embassy, Kazakhstan (Алматы, АҚШ елшілігі)",Almaty Air Quality Monitor - US Embassy,827,2025-10-09,2025-11-15,0,0,36,2025-10-10,2025-11-14,train,inactive_or_test,inactive_or_test
+waqi_82475,Алматы санаторий,waqi,43.176,76.872,1,0.0,Алматы санаторий,Citizen Science project sensor.community,15472,2023-10-29,2026-01-28,0,0,646,2023-10-30,2026-01-28,train,fit,fit
+waqi_dqihb6321,Almaty Arena,waqi,43.26407854761793,76.81687957488205,1,0.0,Almaty Arena,Clarity,7478,2023-10-29,2024-12-05,0,0,317,2023-10-30,2024-11-25,train,fit,fit
+waqi_dxkuv4229,"Road, Almaty Industrial Zone",waqi,43.316523,76.804295,1,0.0,"Road, Almaty Industrial Zone",Clarity,4661,2023-10-29,2024-08-27,0,0,196,2023-10-30,2024-08-22,train,fit,validation

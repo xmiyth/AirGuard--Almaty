@@ -1,0 +1,31 @@
+{
+  "selected_name": "residual_hgb_1_alpha0.25",
+  "selected": {
+    "n": 2112,
+    "stations": 34,
+    "mae": 6.767386643144128,
+    "rmse": 10.233877316656766,
+    "bias": -3.327030907279201,
+    "high_n": 796,
+    "high_mae": 10.819205625084054,
+    "high_rmse": 14.527710896257501,
+    "high_day_n": 926,
+    "high_day_mae": 9.198228636466194,
+    "station_macro_mae": 6.892809912215048
+  },
+  "original_idw": {
+    "n": 2112,
+    "stations": 34,
+    "mae": 6.303810292408193,
+    "rmse": 9.369814714517743,
+    "bias": -1.34360683432911,
+    "high_n": 796,
+    "high_mae": 9.262913430648242,
+    "high_rmse": 12.335420119363947,
+    "high_day_n": 926,
+    "high_day_mae": 8.57607029423541,
+    "station_macro_mae": 6.604333428761983
+  },
+  "evaluation_count": 1,
+  "decision_changed_after_test": false
+}

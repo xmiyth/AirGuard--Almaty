@@ -1,0 +1,547 @@
+# AirData.kz — Open Air Quality Data for Kazakhstan
+
+Cleaned, quality-checked air quality measurements from government and independent monitoring networks across Kazakhstan. Free to use for research, journalism, education, and public awareness.
+
+**Website:** [airdata.kz](https://airdata.kz) · **Contact:** airdatakz@gmail.com · **Updated daily**
+
+---
+
+## Additional Data (Google Drive)
+
+Larger historical datasets that don't fit in this repository are available on Google Drive:
+
+**[AirData.kz — Historical Archives](https://drive.google.com/drive/folders/1M_GBxFrVUxeL0DsVgCPpxjALyS-MlZfM?usp=share_link)**
+
+| Dataset | Description | Period | Size |
+|:--------|:------------|:-------|:-----|
+| **AirKaz** | Daily PM2.5 from 41 low-cost sensors across Almaty. Per-station readings with coordinates. | 2017–2020 | ~1.2 MB |
+| **EcoGosFond.kz** | Government environmental reports from ecogosfond.kz — annual, quarterly, and monthly pollution statistics for all of Kazakhstan. PDF and original DOC formats. | 2005–2022 | ~2.2 GB |
+| **KGMT Historical** | Hourly air quality data extracted from KazHydroMet Excel archives. 17 cities including Aktau, Aktobe, Atyrau, Karaganda, Kostanay, Pavlodar, Shymkent, and more. CSV format. | 2018–2022 | ~777 MB |
+
+---
+
+## Directory Structure
+
+```
+csv/
+├── almaty/                     Almaty — 9 parameters, 2017–present
+│   ├── pm25.csv.gz                616K hourly readings
+│   ├── pm10.csv.gz                358K
+│   ├── co.csv.gz                  370K
+│   ├── no2.csv.gz                 368K
+│   ├── no.csv.gz                  346K
+│   ├── so2.csv.gz                 300K
+│   ├── tsp.csv.gz                  43K
+│   ├── h2s.csv.gz                   4K
+│   ├── o3.csv.gz                  913
+│   └── daily/                  Daily city-wide summaries
+│       ├── pm25.csv.gz            3,374 days
+│       └── ...
+│
+├── astana/                     Astana — 10 parameters, 2018–present
+│   ├── pm25.csv.gz                177K hourly readings
+│   ├── ...
+│   └── daily/
+│
+├── karaganda/                  Karaganda city (three KazHydroMet monitors; PM2.5 from citizen sensors since Oct 2025) — 12 parameters, 2018–present
+│   ├── pm25.csv.gz                 29K hourly readings
+│   ├── ...                        (includes CH₄, THC, NH₃ for 2018–2022)
+│   └── daily/
+│
+├── rest_of_kz/                 All other Kazakhstan cities and towns — 12 parameters, 2018–present
+│   ├── pm2_5.csv.gz               3.2M hourly readings
+│   ├── ...                        (KazHydroMet government stations)
+│   └── daily/                  One value per town per day
+│
+├── stations.csv                Station registry: id, name, city, coordinates, source, operator
+├── stations.geojson            Same registry as GeoJSON points (WGS84)
+└── station_periods.csv         Where a KazHydroMet station id was before it moved (or that the place is unknown)
+```
+
+---
+
+## File Formats
+
+All files are **gzip-compressed CSV** with UTF-8 encoding and header row.
+
+### Hourly files (`{city}/{parameter}.csv.gz`)
+
+One row per station per hour. Only measurements that passed all quality checks are included.
+
+| Column | Type | Description |
+|:-------|:-----|:------------|
+| `datetime_utc` | timestamp | Start of the measured hour in UTC, e.g. `2026-10-08 15:00:00+00:00` (all sources) |
+| `station_id` | string | Unique station identifier |
+| `station_name` | string | Station name / location |
+| `source` | string | Data source (see Sources below) |
+| `lat` | float | Station latitude (WGS84) |
+| `lon` | float | Station longitude (WGS84) |
+| `value_ugm3` | float | Measured value in harmonized units (see Parameters) |
+| `raw_value` | float | Original value before unit conversion |
+| `raw_unit` | string | Original unit from the source |
+| `conversion_note` | string | What conversion was applied |
+| `cluster_id` | integer | Geographic cluster assignment |
+| `cluster_name` | string | Cluster name (e.g., "City Center", "North Central") |
+
+### Daily files (`{city}/daily/{parameter}.csv.gz`)
+
+One row per day. City-wide average computed from geographic cluster averages, ensuring no single dense cluster dominates.
+
+| Column | Type | Description |
+|:-------|:-----|:------------|
+| `date` | date | Calendar date |
+| `value_ugm3` | float | City-wide daily average |
+| `median_value` | float | Median of cluster daily averages |
+| `min_cluster` | float | Lowest cluster average that day |
+| `max_cluster` | float | Highest cluster average that day |
+| `std_cluster` | float | Standard deviation across clusters |
+| `n_clusters` | integer | Number of reporting clusters |
+| `n_stations` | integer | Total reporting stations |
+
+### `rest_of_kz` files
+
+Hourly (`rest_of_kz/{parameter}.csv.gz`), one row per station per hour, clean values only:
+`datetime_utc`, `station_id`, `station_name`, `city`, `lat`, `lon`, `value_ugm3`, `raw_value`, `raw_unit`
+(`station_name`, `city`, `lat`, `lon` are those of the period the hour belongs to — KazHydroMet moves station ids between posts, see `station_periods.csv` — and empty where the place is not known).
+
+Daily (`rest_of_kz/daily/{parameter}.csv.gz`), one row per city per day:
+`date`, `city`, `avg_ugm3` (mean of the clean hourly values of the city's stations), `n_stations`.
+
+---
+
+## Parameters
+
+| Code | Parameter | Unit | Notes |
+|:-----|:----------|:-----|:------|
+| `pm25` | PM2.5 — fine particulate matter | µg/m³ | Primary health indicator. Longest history. |
+| `pm10` | PM10 — coarse particulate matter | µg/m³ | |
+| `co` | Carbon monoxide | µg/m³ | |
+| `no2` | Nitrogen dioxide | µg/m³ | |
+| `no` | Nitric oxide | µg/m³ | |
+| `so2` | Sulfur dioxide | µg/m³ | |
+| `o3` | Ozone | µg/m³ | Limited stations |
+| `h2s` | Hydrogen sulfide | µg/m³ | Astana, Karaganda, rest_of_kz; Almaty in 2021 only |
+| `tsp` | Total suspended particles | µg/m³ | KGMT only; repeats PM10 at most stations (see Known Limitations) |
+| `nh3` | Ammonia | µg/m³ | Karaganda 2018–2022, Astana Oct 2021 – Apr 2022, rest_of_kz 2018–2022 (archive) |
+| `ch4` | Methane | µg/m³ | Karaganda 2018–2022, Temirtau in rest_of_kz 2018–2021 (archive) |
+| `thc` | Total hydrocarbons | µg/m³ | Karaganda 2018–2022, Temirtau in rest_of_kz 2018–2021 (archive) |
+| `pm2_5` | PM2.5 (national naming) | µg/m³ | rest_of_kz uses this code |
+| `pmtot` | Total PM (national naming) | µg/m³ | rest_of_kz only |
+
+---
+
+## Data Sources
+
+| Source | Type | Stations | Cities |
+|:-------|:-----|:---------|:-------|
+| `kgmt` | Government reference-grade (KazHydroMet), collected hourly from its API | 420+ | All Kazakhstan |
+| `kgmt_auto` | The same KazHydroMet monitors: the hourly archive 2018–2022 that KazHydroMet delivered as Excel files | 20 | Almaty, Astana, Karaganda |
+| `openaq` | International aggregator (OpenAQ) | 22 | Almaty, Astana |
+| `waqi` | International aggregator (aqicn.org); in Karaganda citizen sensors of sensor.community | 15 | Almaty, Karaganda |
+| `airgradient` | Low-cost sensors (AirGradient) | 141 | Almaty, Karaganda (two devices, from 11 Oct 2026) |
+| `airkaz` | Low-cost sensors, historical (AirKaz) | 41 | Almaty (2017–2020) |
+
+---
+
+## Data Quality
+
+Every measurement passes automated cleaning rules before inclusion.
+
+**City files (`almaty`, `astana`, `karaganda`)** — each holds the monitors of that city only; every other town is in `rest_of_kz`
+
+| Rule | Check | What it catches |
+|:-----|:------|:----------------|
+| Range | Negative or missing values | Impossible values |
+| Hard cap | Value at or above a physical limit (e.g. PM2.5 ≥ 1,000 µg/m³) | Implausible readings, instrument ceilings |
+| Constant station | One value makes up ≥ 70% of a station-month | Frozen or dead instruments |
+| Stuck sensor | Identical value for 6+ consecutive hours | Frozen readings |
+| Dead dust channel | PM2.5, PM10 or TSP: daily median below 2 µg/m³ on 10 or more days within 30 days | Channels that failed and keep reporting about 1 µg/m³ |
+| Duplicated dust channel | PM2.5 within 2% of PM10 in at least half of a day's hours (PM10 ≥ 10 µg/m³); also the period in which such days keep occurring (10 or more within 30 days) | A PM2.5 channel that repeats PM10 — only the PM2.5 values are removed |
+| Raised floor | PM2.5, PM10 or TSP: 30 days in which every day with 18 or more readings has a 10th percentile of 30 µg/m³ or more | A channel that never comes down — an offset added to every reading, or a channel stuck high. Real air has clean hours within any month |
+| Noisy channel | PM2.5, PM10 or TSP: 12 or more days within 30 on which the typical change from one hour to the next is 40% of the daily level or more | A channel that jumps at random from reading to reading |
+| Cluster outlier | Station daily average > 3 robust standard deviations from its cluster median | A station that disagrees with its neighbourhood |
+| Duplicate sources | Same station and hour from two sources | Double counting |
+
+The hourly collection (`kgmt`) and the archive (`kgmt_auto`) of KazHydroMet are two copies of the same instruments: a day on which one copy of a dust channel is found dead, duplicated, raised or noisy is not published from the other copy either.
+
+**`rest_of_kz`** (most towns have a single monitor, so a station is compared only with itself; applied from 10 Oct 2026)
+
+| Rule | Check | What it catches |
+|:-----|:------|:----------------|
+| Range | Negative values, or ≥ 100 mg/m³ | Corrupt readings |
+| Hard cap | Same limits as the city files | Implausible readings |
+| Instrument ceiling | PM10 exactly 1,000 µg/m³ | Saturated analyser |
+| Flatline | Identical value for 24+ consecutive hours | Frozen or dead channel |
+| Zero flatline | Particulates (PM2.5, PM10, PMtot) at zero for 6+ consecutive hours | Dead channel |
+| Dead dust channel | PM2.5, PM10 or PMtot: daily median below 2 µg/m³ on 10 or more days within 30 days | Channels that failed and keep reporting about 1 µg/m³ |
+| Duplicated dust channel | PM2.5 within 2% of PM10 in at least half of a day's hours (PM10 ≥ 10 µg/m³); also the period in which such days keep occurring (10 or more within 30 days) | A PM2.5 channel that repeats PM10 — only the PM2.5 values are removed |
+| Raised floor | PM2.5, PM10 or TSP: 30 days in which every day with 18 or more readings has a 10th percentile of 30 µg/m³ or more | A channel that never comes down — an offset added to every reading, or a channel stuck high. Real air has clean hours within any month |
+| Noisy channel | PM2.5, PM10 or TSP: 12 or more days within 30 on which the typical change from one hour to the next is 40% of the daily level or more | A channel that jumps at random from reading to reading |
+
+Shorter runs of identical values are kept in `rest_of_kz`: most are readings at the analyser's detection limit (e.g. H₂S 0.001 mg/m³), i.e. real "below detection" hours. One-hour peaks are kept as well — near industry they are real plumes, and a single station cannot tell an event from a glitch. Earlier versions of this page listed statistical-outlier and spike-detection stages; they were never applied to the published files.
+
+Measurements flagged as suspect or invalid are **excluded** from these files. The full methodology is documented at [airdata.kz/methodology](https://airdata.kz/en/methodology/).
+
+---
+
+## Unit Conversions
+
+| Source | Original | Published | Conversion |
+|:-------|:---------|:----------|:-----------|
+| KGMT (concentrations) | mg/m³ | µg/m³ | × 1,000 |
+| KGMT (pressure) | mmHg | hPa | × 1.33322 |
+| WAQI (PM2.5, PM10) | AQI index | µg/m³ | EPA breakpoint reverse |
+| All others | µg/m³ | µg/m³ | No conversion |
+
+Original values are preserved in the `raw_value` and `raw_unit` columns for traceability.
+
+---
+
+## Quick Start
+
+### Python
+
+```python
+import pandas as pd
+
+# Read Almaty PM2.5 hourly data
+df = pd.read_csv('almaty/pm25.csv.gz')
+
+# Read daily summaries
+daily = pd.read_csv('almaty/daily/pm25.csv.gz', parse_dates=['date'])
+
+# Filter to 2024
+df_2024 = df[df['datetime_utc'].str.startswith('2024')]
+```
+
+### R
+
+```r
+library(readr)
+df <- read_csv("almaty/pm25.csv.gz")
+daily <- read_csv("almaty/daily/pm25.csv.gz")
+```
+
+### Command line
+
+```bash
+# Preview data
+gzcat almaty/pm25.csv.gz | head -5
+
+# Count rows
+gzcat almaty/pm25.csv.gz | wc -l
+
+# Extract to uncompressed CSV
+gzcat almaty/pm25.csv.gz > almaty_pm25.csv
+```
+
+---
+
+## Coverage
+
+| City | PM2.5 since | Parameters | Hourly rows | Daily rows |
+|:-----|:------------|:-----------|:------------|:-----------|
+| Almaty | March 2017 | 9 | 2.4M | 14K |
+| Astana | January 2018 | 10 | 1.7M | 19K |
+| Karaganda (city) | January 2018 | 12 | 632K | 13K |
+| Rest of KZ | January 2018 | 12 | 22.8M | 477K |
+
+---
+
+## Known Limitations
+
+- **Almaty 2017–2020**: PM2.5 data comes primarily from AirKaz low-cost sensors (daily granularity, lower accuracy than government reference monitors). Multi-parameter hourly data starts in 2020.
+- **2018–2022 KazHydroMet archive (`kgmt_auto`)**: in the city files since 10 Oct 2026 for the 20 monitors whose archive series could be matched to a station (see Data Corrections). It has gaps: Astana has only December for 2019; Karaganda has no 2019 and only November–December for 2020; Almaty's archive covers January 2021 – April 2022. Where the archive and the hourly collection (`kgmt`) cover the same station-hour, the archive value is published. Left out: the archive series of Saran and Abay, and files in which several towns were merged under one station.
+- **Karaganda has almost no dust data for 2022–2025.** The city has three KazHydroMet monitors. Station 36 has reported PM2.5 and PM10 that jump between a few and 200 µg/m³ from one hour to the next since 2021; station 65 has reported about 230 µg/m³ in all three dust channels since 2021 and practically never less than 160; station 64 stopped reporting dust in January 2023. These values are removed since 10 Oct 2026 (see Data Quality). What remains is 2018, late 2020, 2021 and a few weeks at the edges of the faulty periods (e.g. December 2025, 100–130 µg/m³), which should not be read as a city level. The gas channels are not affected.
+- **TSP repeats PM10**: at every KazHydroMet station that reports both, the two channels carry the same number in most hours, so `tsp` (`pmtot` in `rest_of_kz`) is not an independent measurement of total dust.
+- **rest_of_kz**: Uses `pm2_5` and `pmtot` codes instead of `pm25` and `tsp` (matches KGMT national naming convention).
+- **Station coordinates**: Some historical stations lack lat/lon coordinates (shown as empty in CSV).
+- **rest_of_kz stations without a city**: KazHydroMet's API gives no station metadata, and our station list covers 148 of the 321 stations in `rest_of_kz` (70 towns), checked against KazHydroMet's public map on 11 Oct 2026. The others appear in the hourly files with an empty `city`, `lat` and `lon`, and are not part of the daily files (a daily value is a per-city average).
+- **KazHydroMet gap (22 Dec 2025 – 17 Mar 2026)**: KazHydroMet data was not collected in this period; it cannot be backfilled because the KazHydroMet API serves only the latest hour.
+- **Almaty OpenAQ**: since March 2026 the only OpenAQ provider left in Almaty is AirGradient, whose sensors are taken directly from AirGradient (source `airgradient`), so the `openaq` source has no Almaty rows after 18 Mar 2026.
+- **US Embassy (WAQI)**: the US Embassy feed in Almaty has reported no PM2.5 since December 2025.
+- **Karaganda PM2.5 since October 2025 comes from citizen sensors** whose absolute level is not verified (see the correction of 11 Oct 2026); before that it comes from KazHydroMet monitors, most of whose dust channels are removed as faulty for 2022–2025.
+- **KazHydroMet dust channels**: many KazHydroMet PM2.5, PM10 and TSP channels have failed over the years and report about 1 µg/m³; those periods are removed (see Data Quality and the correction of 10 Oct 2026), so fewer government monitors contribute in 2022–2025.
+- **PM2.5 equal to PM10 at some KazHydroMet stations**: such PM2.5 values are removed since 10 Oct 2026 (see Data Quality). One station (Almaty PCP #31, `kgmt_27`) reports a PM2.5 that is PM10 minus about 0.4 µg/m³; its days with higher dust levels are removed, the low-level days cannot be told from real data and remain.
+- **Station-level rules need time and cannot see everything.** A new fault is published until it has lasted long enough to be recognised (20 days for a raised floor, 12 days for a noisy channel, 10 for a dead or duplicated one) and is withdrawn then. A monitor that reads too low or too high by a steady factor looks like any other monitor: in Astana, stations 12 and 4 report 2–3 times the PM10 of the other monitors, and the KazHydroMet PM2.5 of 2026 is 7–15 µg/m³ where four OpenAQ sensors show 45–64. Outside Almaty there is no independent network to compare with.
+- **Collection gap (25 Apr – 8 Oct 2026)**: the pipeline was offline. Almaty, Astana and Karaganda have no data for this period; `rest_of_kz` has data up to 21 Aug 2026. Collection resumed on 8 Oct 2026; the gap is not backfilled.
+
+---
+
+## Data Corrections
+
+### 11 Oct 2026 — Karaganda PM2.5 from independent sensors; hourly means repaired
+
+Please re-download `karaganda/pm25` (hourly and daily) and `almaty/pm25`.
+
+- **Karaganda has PM2.5 again — from citizen sensors.** Since the correction of 10 Oct every KazHydroMet dust channel in
+  Karaganda is removed as faulty, and the city had no clean PM2.5 after 22 Dec 2025. Four citizen sensors
+  (sensor.community, collected through WAQI: `waqi_-506290` Maikuduk and `waqi_-506392` Tereshkova St, both live, and two
+  that stopped in November 2025) are now in the Karaganda files with their history from October 2025: 9,058 clean hours
+  on about 200 days. Two AirGradient devices in the city are collected directly from 11 Oct 2026.
+  **Their absolute level is not verified.** The two live sensors agree with each other only moderately (daily r 0.66)
+  and average about 20 µg/m³ in winter, which is low for a coal-heated city; there is no working reference monitor
+  in Karaganda to check them against. Use them for when the air was better or worse, not for how polluted Karaganda is.
+  With these sensors in the city's cluster, 440 remaining December 2025 hours of KazHydroMet station 36 (reading
+  about 100 µg/m³ on a channel flagged as noisy up to 1 Dec) are removed as outliers.
+- **Hours built from a part of their readings.** Each run of our processing rebuilt one clock hour from the readings
+  of its last minutes only and overwrote the full hourly mean: 1,712 Almaty AirGradient station-hours since 9 Oct 2026
+  and 104 Almaty WAQI station-hours since March 2026 (median difference 2 µg/m³, 17 µg/m³ at the 95th percentile). They
+  are set to the mean of all readings of the hour, and the cause is fixed.
+- **Open question — Almaty, source `waqi`, before 17 Mar 2026.** 42,639 of these 49,744 hourly values do not equal the
+  mean of the raw readings we hold for their hour (median difference 3 µg/m³, 41 µg/m³ at the 95th percentile). They
+  come from an earlier import and are not explained yet; treat Almaty PM2.5 from `waqi` before that date with caution.
+
+### 11 Oct 2026 — Astana cleaned of Almaty sensors; station places by period; five more towns from the archive
+
+Please re-download `astana/pm25` (hourly and daily), every `rest_of_kz` file, `stations.csv` / `stations.geojson`, and the
+city files if you use `lat`, `lon`, `cluster_id` or the station ids of the US Embassy monitors.
+
+- **Almaty sensors were published as Astana.** OpenAQ locations were filed by a substring of their name, and "nur" (for
+  Nur-Sultan) matched six sensors in Almaty — Nurmaqov street, Nurtau, Nuriddin, Nurly-Tan, Nurly street. They were in the
+  Astana files from 28 Apr 2024 to 9 Oct 2026: 8,626 clean hours, and **all** of Astana's clean PM2.5 hours in January and
+  February 2026 (2,485 and 2,613), 68 % in March 2026. They are removed; locations are now filed by their coordinates.
+  Astana has no clean PM2.5 for January and February 2026.
+- **OpenAQ station ids.** Rows that had been imported without their location carried the sensor id and a placeholder
+  coordinate. The US Embassy monitors are now `oaq_7094` (Astana, was `oaq_20512`) and `oaq_8876` (Almaty, was `oaq_25903`)
+  at their real coordinates; `oaq_8967269`, `oaq_8967421`, `oaq_14869003`, `oaq_14969444` became `oaq_2812550`,
+  `oaq_2812831`, `oaq_6161924`, `oaq_6175391`.
+- **A KazHydroMet station id is not a place.** KazHydroMet re-points the ids of its feed between posts: id 254 carried
+  Satpayev until Dec 2023, Lisakovsk from Dec 2024 and Zhetikara since 5 Jun 2025; 235 moved from Atyrau to Inderbor in
+  May 2023, 238 from Inderbor to Zhanbai, 232 and 233 (Kandyagash / Shubarshi) exchanged places in late 2022, 264 moved from
+  Shymkent to Dostyk in Aug 2026; 258, 311 and 313 changed region as well. Every row of such an id used to carry one town.
+  In `rest_of_kz` the `city`, `station_name`, `lat` and `lon` of a row are now those of the period the hour belongs to, and
+  empty where the place is not known. The periods, with the evidence for each, are in the new file
+  **`station_periods.csv`** (`station_id`, `valid_from`, `valid_to`, `name`, `city`, `lat`, `lon`, `note`; dates in UTC,
+  `valid_to` exclusive, an empty date = open). `stations.csv` gives the place of today.
+  How we know: the station's own temperature channel against ERA5 reanalysis month by month (a station that did not move
+  picks its own area for years; 100 km costs 0.3–0.6 °C of scatter, 300 km 3–5 °C), KazHydroMet's public map (a post's
+  values equal one feed id's values in the same hour), WAQI's metadata, and the address lists of KazHydroMet's bulletins.
+- **Mapping errors corrected** with the same sources. Astana stations `kgmt_7` and `kgmt_8` had each other's
+  coordinates and clusters (North ↔ South-Central) for their whole history; `kgmt_12` is at Nazarbayev University since
+  21 Oct 2025 (11 km from its earlier place; earlier hours keep the old coordinates); Karaganda `kgmt_65` was 12.7 km off,
+  Almaty `kgmt_56` 2.1 km. In `rest_of_kz`: 43 (Zhezkazgan) had the coordinates of a Satpayev post, 68 (Aksu, Pavlodar
+  region) those of the Aksu near Stepnogorsk, 346 km away — the two were one line "Aksu" in the daily files and are now
+  `Aksu` and `Aksu vil.`; 41 is the Burlin post, not Aksai; Semey 2 and 248 were exchanged.
+- **19 more stations have a town and coordinates** (Atyrau 167–170, 212–214, 216–218, 317, 320, 322; the Tengiz field
+  220–223; Ridder 325; Satpayev 313). Of the 136 mapped ids that report today, 130 are confirmed against KazHydroMet's
+  map; still without a place: 113, 215, 219, 312, 315, 321, 323, 324, and 42 and 258 (see `station_periods.csv`).
+- **Western towns: calendar days.** Daily `rest_of_kz` values of Atyrau, Aktau, Uralsk, Aktobe, Kyzylorda and the towns
+  of their regions were cut at 23:00 local time for dates before March 2024 (one time zone had been used for the whole
+  country). They are cut at local midnight now; `stations.csv` has the zone of each post.
+- **Five towns of the Karaganda region, 2018–2022.** KazHydroMet's Excel archive for Saran (station 21), Abay (255),
+  Balkhash (96), Temirtau (63) and Zhezkazgan (43) is in `rest_of_kz` now: 619,000 hourly values re-read from the
+  workbooks (each hour is the mean of the 20-minute samples), under the same quality control as the live data. Where
+  archive and live feed overlap (2021–2022) the archive value is published. New parameter files: `nh3`, `ch4`, `thc`.
+  The earlier import had merged these towns under one post number, so they could not be taken from it; months that
+  are verbatim copies of another month in the source (Saran, late 2020) are left out.
+
+### 10 Oct 2026 — Dust channels that never come down or jump from hour to hour removed
+
+Please re-download the `pm25`, `pm10` and `tsp` files of `astana` and `karaganda`, `almaty/pm25` and `almaty/pm10`, and the
+`pm2_5`, `pm10` and `pmtot` files of `rest_of_kz`.
+
+- **Raised floor.** Some KazHydroMet dust channels add a constant offset or sit on a high plateau: Karaganda station 65 has read
+  175 / 220 / 700 µg/m³ (5th percentile / median / 95th) in every half-year since 2021 — in PM2.5, PM10 and TSP alike — and
+  0.7 / 7 / 31 in the two months of 2020 when it worked; Astana station 4 sat at 135–162 µg/m³ for most of 2022. Real air has clean
+  hours within any month, so a channel whose daily 10th percentile stays at 30 µg/m³ or above for 30 days is not measuring air.
+  Among 9,282 thirty-day windows of independent sensors (five Almaty smog winters included) the highest such floor is 21.6 µg/m³.
+- **Noisy channel.** Karaganda station 36 has jumped between a few and 200 µg/m³ from one hour to the next since 2021
+  (2.8 → 76.7 → 117.5 → 79.8 → 12.3 → 114.3), with no seasonal cycle; Almaty station 59 does the same since September 2024, and in
+  those months it has no correlation with Almaty's independent sensors. A channel is removed while it has 12 or more such days
+  within 30; no independent sensor has more than 7.
+- **Removed** (hourly values): Karaganda PM10 96,000 → 15,000, PM2.5 64,000 → 20,000, TSP 43,000 → 1,200; Astana PM10 224,000 →
+  205,000, TSP 58,000 → 41,000, PM2.5 191,000 → 185,000; Almaty PM2.5 632,000 → 616,000, PM10 365,000 → 358,000; `rest_of_kz`
+  397,000 values at several dozen stations — half of `pmtot`, which at many stations was a flat line.
+- **Annual mean of the daily city value, before → after (µg/m³):**
+
+| | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 |
+|:--|:--|:--|:--|:--|:--|:--|
+| Astana PM10 | 39.4 → 33.4 | 48.8 → 41.5 | 68.0 → 37.5 | 35.1 → 27.3 | 47.7 → 39.4 | 19.9 → 15.8 |
+| Astana PM2.5 | 23.6 → 23.7 | 30.2 → 27.5 | 27.9 → 23.4 | 20.1 → 18.2 | 15.5 → 15.5 | 14.4 → 14.4 |
+| Karaganda PM2.5 | 29.1 → 23.0 | 98.7 → 59.9 | 67.9 → no data | 77.2 → no data | 83.5 → no data | 94.9 → 21 days only |
+| Karaganda PM10 | 57.1 → 63.2 | 141.8 → 120.8 | 161.9 → 31 days only | 185.6 → no data | 197.4 → no data | 194.5 → 42 days only |
+
+  Almaty changes by at most 1.4 µg/m³ in any year. **If you used the earlier Karaganda dust files: the values of 2021–2026 came
+  from two broken instruments.**
+- **Archive and hourly collection judged together.** The KazHydroMet archive (`kgmt_auto`) has no PM10 for most Almaty stations, so
+  its PM2.5 could not be checked against PM10 and 13,000 values were published although the hourly collection of the same
+  instrument and hours showed PM2.5 repeating PM10. A day flagged in one copy is now removed from the other as well.
+- Considered and not added, each after measuring it: a rule comparing PM10 with the rest of the city (the remaining differences
+  look like real hot spots), "PM10 equals TSP" (in Almaty the shared value behaves like the city's PM10), "PM2.5 above PM10"
+  (rare at KazHydroMet stations, common in index-converted WAQI data).
+
+### 10 Oct 2026 — KazHydroMet's 2018–2022 archive is back in the city files
+
+The hourly archive that KazHydroMet delivered as Excel files had been part of this dataset until the pipeline was rebuilt, and was
+missing from the files since then. It is published again as source `kgmt_auto`: **1.58 million quality-checked hourly values** for
+20 monitors — Astana from January 2018 (6 monitors), Karaganda from January 2018 (3), Almaty January 2021 – April 2022 (11).
+Please re-download the `almaty`, `astana` and `karaganda` files.
+
+- **Stations were assigned by their data, not by their file names.** Each archive series was compared with the hourly collection of
+  every monitor in the months both cover (March 2021 – April 2022) and assigned to the one it matches. For 18 monitors that is the
+  station named in the file. **Astana stations 7 and 8 are swapped in the archive** (each matches the other in 53–57% of the hours
+  and itself in 3–4%); they are published under the station their data belongs to. After the import the daily means of the archive
+  and of the hourly collection agree for every monitor (correlation 0.95–1.00).
+- **Timestamps** follow the convention of all other files: `datetime_utc` is the start of the measured hour in UTC.
+- **Overlap.** For about a year per monitor both the archive and the hourly collection exist. One value per station-hour is
+  published — the archive's, because the hourly collection stored KazHydroMet's first published value and the archive has the
+  revised one; if quality control rejected the archive value, the collected one is used.
+- **Same quality control.** The archive contains the same instrument faults as the later data (dead dust channels, PM2.5 repeating
+  PM10, frozen readings); 323,000 of its 1.9 million values are not published.
+- **New coverage**: Astana 2018 and 2020 complete (2019: December only); Karaganda 2018 and November 2020 onwards; Almaty's gases
+  from January 2021 instead of December 2021; `nh3`, `ch4`, `thc` and four more years of `o3` for Karaganda, `nh3` for Astana, `h2s`
+  for Almaty.
+- **Annual mean of the daily city PM2.5, before → after (µg/m³):** Astana 2018: 34.8 (155 days, one station) → 22.2 (361 days);
+  2019: 25.6 → 26.0; 2020: none → 23.6; 2021: 27.7 → 30.2. Karaganda 2018: none → 22.5; 2021: 102.6 → 98.7. Almaty 2021: 36.9 → 37.4;
+  2022: 32.8 → 34.0.
+- **Not included**: the archive series of Saran and of Abay (not Karaganda city), and files in which several towns of the Karaganda
+  region were merged under one station — their values cannot be told apart.
+
+### 10 Oct 2026 — Duplicated PM2.5 channels removed; `karaganda` is the city only; six more city monitors
+
+Please re-download all `pm25` / `pm2_5` files, all `karaganda` files and the `rest_of_kz` files.
+
+- **PM2.5 that repeats PM10.** At several KazHydroMet stations the PM2.5 channel carried the PM10 value (211 vs 213 µg/m³, hour after
+  hour, all year). PM2.5 is a part of PM10 and cannot equal it for long, so these were not PM2.5 measurements, and they inflated the city
+  averages. A new rule (see "Data Quality") removes the PM2.5 values of a day on which at least half of the hours are within 2% of PM10,
+  and of the period in which such days keep occurring. No longer published: about 34,000 hourly PM2.5 values in Almaty, 26,000 in
+  Astana (stations 12 and 4), 29,000 in Karaganda (stations 64 and 65), 26,000 at Temirtau station 63 and 94,000 in the rest of
+  `rest_of_kz`. PM10 values are not changed. None of the independent sensors that report both channels is affected.
+- **`karaganda` now contains Karaganda city only.** The files used to hold the KazHydroMet monitors of the former Karaganda region —
+  Saran, Temirtau, Balkhash and Zhezkazgan, 20 to 480 km from the city — and the daily "Karaganda" value averaged all of them. Those
+  four stations (21, 63, 96, 43; about 719,000 hourly rows) moved to `rest_of_kz`, where each town has its own daily value;
+  `karaganda` keeps the city's three monitors (36, 64, 65). Every Karaganda daily series changes. See Known Limitations for the city's
+  dust channels.
+- **Six more KazHydroMet monitors in the city files.** Five dust sensors in Almaty (stations 155, 157, 159, 299, 300) and one in Astana
+  (396) had been filed under `rest_of_kz` without a name or coordinates. They are now in `almaty` and `astana` with their history
+  (PM2.5 and PM10, from 2021; 396 from 2023): about 322,000 hourly values.
+- **Annual mean of the daily city PM2.5 averages, before → after (µg/m³):**
+
+| | 2021 | 2022 | 2023 | 2024 | 2025 |
+|:--|:--|:--|:--|:--|:--|
+| Almaty | 36.8 → 36.9 | 35.0 → 32.8 | 29.5 → 30.7 | 22.8 → 25.8 | 26.0 → 25.8 |
+| Astana | 35.7 → 27.7 | 66.4 → 27.7 | 36.7 → 20.1 | 55.5 → 15.5 | 19.2 → 14.4 |
+| Karaganda (region → city only) | 74.2 → 102.6 | 89.3 → 67.9 | 76.1 → 77.2 | 94.7 → 83.5 | 137.2 → 94.9 |
+
+  **If you used the earlier files: Astana's PM2.5 for 2021–2025 was inflated by two stations whose PM2.5 channel repeated PM10 —
+  2.4-fold in 2022 and 3.6-fold in 2024.**
+- **12 more stations have a name, a town and coordinates** (from WAQI's copy of the KazHydroMet feed, which keeps KazHydroMet's
+  station ids): the six above, Temirtau 200 and Zhezkazgan 208, 209, 210, 412, 419.
+- **US Embassy station id.** Its WAQI history of Oct 2025 – Jan 2026 was stored under the station id `waqi_nan`; it is now `waqi_12774`,
+  the id of the rest of its data.
+
+### 10 Oct 2026 — Names, cities and coordinates for 23 more KazHydroMet stations
+
+23 stations in `rest_of_kz` that had no metadata now have a name (street address), a city and coordinates, and their data enters the daily
+files: Oskemen (3), Atyrau (3), Satpayev (3), Uralsk (2), Aktobe, Aktau, Aksai, Aksu, Kulsary, Pavlodar, Semey, Taldykorgan, Bestobe,
+Damba, Zhanbai and Inderbor. The metadata comes from WAQI's copy of the KazHydroMet feed, which keeps KazHydroMet's own station ids;
+the match was checked against the measurements themselves (identical hourly values).
+
+### 10 Oct 2026 — Dead KazHydroMet dust channels removed (PM2.5, PM10, TSP)
+
+KazHydroMet dust channels fail by dropping to about 1 µg/m³ (with small jitter) or to zero and stay there for months. The earlier
+rules did not catch this because the values are not identical, so these readings were published and pulled the city averages down.
+A new rule (see "Data Quality") removes a station-day whose median is below 2 µg/m³ when the station has ten or more such days within
+30 days. Please re-download all `pm25`, `pm10`, `tsp`, `pm2_5` and `pmtot` files.
+
+- **Almaty:** 10 of the 11 KazHydroMet PM2.5 stations had dead periods (135,000 hourly values removed; PM10 107,000; TSP 86,000). 28,000 values of
+  healthy stations, which had been rejected as outliers against their dead neighbours, are published again.
+- **Annual mean of the daily city PM2.5 averages, before → after (µg/m³):**
+
+| | 2021 | 2022 | 2023 | 2024 | 2025 |
+|:--|:--|:--|:--|:--|:--|
+| Almaty | 35.8 → 36.8 | 26.7 → 35.0 | 20.7 → 29.5 | 15.8 → 22.8 | 15.0 → 26.0 |
+| Astana | 30.4 → 35.7 | 54.8 → 66.4 | 26.2 → 36.7 | 35.8 → 55.5 | 13.1 → 19.2 |
+| Karaganda | 63.5 → 74.2 | 77.0 → 89.3 | 67.0 → 76.1 | 81.1 → 94.7 | 112.1 → 137.2 |
+
+  **If you used the earlier files, the fall of Almaty's PM2.5 between 2021 and 2025 was mostly an artefact of failing monitors.**
+- **Astana:** 40,000 PM2.5 and 16,000 PM10 values removed (4 stations). **Karaganda:** 20,000 PM2.5, 3,000 PM10 and 34,000 TSP values (one station).
+- **`rest_of_kz`:** 1.26 million further values removed (`pm2_5` 706,000, `pm10` 317,000, `pmtot` 239,000).
+- The rule was validated against Almaty's independent sensors: among them it removes only five broken sensors and the dead US Embassy feed, and it
+  catches 93.5% of the KazHydroMet station-days that the independent network contradicts.
+
+### 10 Oct 2026 — Quality control for `rest_of_kz`
+
+Until now `rest_of_kz` was published with a range filter only. The rules in "Data Quality" above now apply; please re-download the `rest_of_kz` files.
+
+- **3.43 million of 27.3 million hourly values removed (12.6%)**: 112,000 at or above a hard cap (PM2.5 up to 99,790 µg/m³), 46,000 PM10 values at the analyser's ceiling of exactly 1,000 µg/m³, 2.36 million in flatlines of 24 hours or longer, and 910,000 zero-dust hours of dead channels (nearly half of `pmtot`). No remaining value was changed.
+- **Effect on averages** (all published values): PM2.5 44.5 → 23.8 µg/m³, PM10 52.7 → 27.9, O₃ 370 → 31.5 (thousands of placeholder values of 20,000), SO₂ 46.9 → 35.0.
+- **Daily files are per city only.** Stations whose city we do not know (226 of 323) were averaged into one line per day with an empty city name — a mean over dozens of unrelated towns. Those lines are gone (about 12,600); the stations remain in the hourly files. About 49,600 city-days were dropped because no clean reading was left.
+- Two city names lost a trailing space (`Semey`, `Kenkiyak vil.`).
+
+### 10 Oct 2026 — Karaganda city stations, Almaty WAQI, KazHydroMet revisions and cleanup
+
+All files were regenerated; please re-download the `almaty`, `karaganda` and `rest_of_kz` files if you use earlier copies.
+
+- **Karaganda city monitors are now in the `karaganda` files.** Three KazHydroMet monitors inside Karaganda city (stations 36, 64, 65 — spelled "Karagandy" in the source) had been filed under `rest_of_kz` since 2021; about 654,000 hourly values moved. The `karaganda` files cover the KazHydroMet monitors of Karaganda city, Temirtau, Saran, Balkhash and Zhezkazgan; the city daily value averages these stations.
+- **Almaty WAQI.** Six independent WAQI stations in Almaty were collected but never used because the routing relied on station names; they are now in the `almaty` files from 17 Mar 2026 (about 12,000 hourly values). WAQI stations that re-publish KazHydroMet monitors are excluded to avoid double counting.
+- **One row per station and hour for WAQI.** Older WAQI data in the `almaty` files had several readings per station-hour; each station-hour is now one row with the average (244,000 rows → 70,000).
+- **AirGradient hourly values.** The newest hour of each nightly run was stored as a partial average and never completed; 4,536 such hours were recomputed from the full hour, and new data is completed automatically.
+- **KazHydroMet revisions.** KazHydroMet revises hourly values shortly after publishing them (in our measurement about 45% of values changed, by a median of 3%, within 20 minutes). From 9 Oct 2026 the revised values are stored; earlier hours keep the first published value.
+- **Values exactly at a hard cap are invalid** (instrument ceilings or placeholders, e.g. 2000 µg/m³ SO₂).
+- **Removed non-KazHydroMet rows:** 49,793 sub-hourly points of a unit-mislabelled stream from the Astana KazHydroMet data, and about 820,000 WAQI-derived and mislabelled rows from `rest_of_kz` (mostly `pm2_5`).
+
+### 9 Oct 2026 — Hourly timestamps of KazHydroMet data corrected
+
+Hourly KazHydroMet values (the `kgmt` source in the `almaty`, `astana` and `karaganda` files, and all of `rest_of_kz`) now
+use the same convention as every other source: `datetime_utc` is the **start** of the measured hour, in UTC.
+
+- Values loaded from the historical archive (2020-06 → 2025-12) were stamped **6 hours late**; they were moved back by 6 hours.
+- KazHydroMet stamps every value with the **end** of its hour; all KazHydroMet hours were additionally moved back by 1 hour.
+  In total, history before 2023-10-29 moved back by 7 hours and later data by 1 hour.
+- Duplicate measurements created by the old error were removed (about 27,000 hourly values in the city files; about 670,000
+  raw readings behind `rest_of_kz`).
+- With the duplicates gone, several stuck or constant KazHydroMet sensors (e.g. TSP readings of 0.00 µg/m³) became visible;
+  quality control now excludes those hours, so some hourly files have fewer rows.
+- Daily values change little (median 0.6–3.7% by city and pollutant); hourly profiles such as the daily NO2 cycle are now aligned
+  with the other sources.
+- `raw_value` is now written with at most 6 decimals (values in `value_ugm3` are unchanged by this).
+
+If you downloaded these files before this date, please download them again.
+
+### 8 Oct 2026
+
+All files were regenerated with these fixes; please re-download if you use earlier copies.
+
+- **Daily values use Kazakhstan calendar days.** Daily files and summaries previously
+  grouped hours by America/Los_Angeles days (12–13 h off). They now use local days
+  (Asia/Almaty). Almaty PM2.5 daily values changed by a median of 17%.
+- **Hourly timestamps are written in UTC** (`+00:00`). The instants are unchanged; only the
+  offset notation differs from earlier files (`-07:00` / `-08:00`).
+- **WAQI hourly readings moved to their true hour.** 75,026 WAQI rows (Almaty, 2023–2026)
+  had been stored 12–14 h late; corrected. 3,255 resulting duplicates were dropped.
+- **No double counting of AirGradient sensors.** OpenAQ re-publishes AirGradient sensors;
+  in Almaty they are now taken only from the direct AirGradient feed.
+- **Under review:** several KazHydroMet PM2.5 monitors in Almaty disagree strongly with the
+  dense AirGradient network. (The KazHydroMet timestamp question noted here was resolved on 9 Oct 2026, see above.)
+
+---
+
+## Citation
+
+```
+AirData.kz. Open Air Quality Dataset for Kazakhstan.
+Global Shapers Almaty Hub, 2019–present.
+https://airdata.kz
+```
+
+---
+
+## License
+
+**CC BY-NC 4.0** — free to use, share, and adapt for non-commercial purposes with attribution.
+
+- You **may**: use for research, journalism, education, personal projects, non-profit work
+- You **may not**: sell the data, include it in commercial products, or use it in paid services
+- You **must**: credit AirData.kz and link to this repository
+
+Full license: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+
+Upstream source terms also apply (KazHydroMet, OpenAQ, WAQI).
+
+---
+
+## About
+
+AirData.kz is a non-profit open data project by [Global Shapers Almaty Hub](https://www.globalshapers.org/hubs/almaty-hub), an initiative of the World Economic Forum. We collect air pollution data from every source we can find, clean it carefully, and share it with everyone — for free, forever.

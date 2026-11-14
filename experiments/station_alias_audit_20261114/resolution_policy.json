@@ -1,0 +1,69 @@
+{
+  "status": "EXPLORATORY; no untouched historical holdout certified",
+  "test_evaluations": 0,
+  "raw_measurements_merged": 0,
+  "group_distance_m": 100,
+  "grouping": "Identity lineage links separate from conservative site groups; transitive across all recorded positions.",
+  "precedence": "Inspected-test groups take precedence over validation, then fit. No split reassignment to make scores improve.",
+  "excluded_quality": "All WAQI before 2026-03-17: upstream unexplained earlier-import discrepancies; no attempted recalibration.",
+  "representative": "One original station-day per site-day; source priority kgmt, kgmt_auto, airgradient, openaq, airkaz, waqi, then more samples, then lexical station ID. Never average aliases or backfill labels.",
+  "original_cutoff": "2025-04-18",
+  "fit_until_exclusive": "2024-01-22",
+  "validation_from": "2024-01-22",
+  "validation_until_exclusive": "2025-04-18",
+  "fixed_models": [
+    {
+      "name": "original_idw_settings",
+      "family": "idw",
+      "column": "idw_k8_p2_floor0.15"
+    },
+    {
+      "name": "previously_selected_tuned_idw",
+      "family": "idw",
+      "column": "idw_k4_p1_floor0.05"
+    },
+    {
+      "name": "fixed_random_forest",
+      "family": "random_forest",
+      "params": {
+        "min_samples_leaf": 25,
+        "max_depth": 10,
+        "max_features": 0.8
+      }
+    },
+    {
+      "name": "fixed_hist_gradient_boosting",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 40,
+        "l2_regularization": 10,
+        "loss": "absolute_error"
+      }
+    },
+    {
+      "name": "fixed_residual_rf",
+      "family": "residual_rf",
+      "alpha": 0.1,
+      "params": {
+        "min_samples_leaf": 60,
+        "max_depth": 6,
+        "max_features": 0.8
+      }
+    },
+    {
+      "name": "fixed_residual_hgb",
+      "family": "residual_hgb",
+      "alpha": 0.1,
+      "params": {
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 60,
+        "l2_regularization": 20,
+        "loss": "absolute_error"
+      }
+    }
+  ],
+  "metadata_retrieved": "2026-11-14",
+  "evaluation_scope": "Original training IDs only, with full-site exclusions; no test target evaluation.",
+  "future_holdout": "Proposed 2026-11-15 through 2027-02-28 local Almaty dates; not yet collected or scored."
+}

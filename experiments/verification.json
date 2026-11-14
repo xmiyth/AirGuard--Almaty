@@ -1,0 +1,12 @@
+{
+  "synthetic_leakage_tests": "3 passed",
+  "gradio_import": "passed, 38 blocks",
+  "spatial_map_callback": "passed, 2 traces",
+  "measured_map_callback": "passed, 30 table rows",
+  "results_callback": "passed, 12 rows",
+  "production_sha256_unchanged": true,
+  "alias_groups_disjoint": true,
+  "saved_model_reload_and_inference": "passed",
+  "alias_safe_test_evaluations": 0,
+  "browser_test_performed": false
+}

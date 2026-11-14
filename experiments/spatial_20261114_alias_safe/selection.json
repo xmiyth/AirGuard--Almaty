@@ -1,0 +1,21 @@
+{
+  "name": "idw_k4_p1_floor0.05",
+  "family": "idw",
+  "idw_column": "idw_k4_p1_floor0.05",
+  "features": [],
+  "alpha": 0,
+  "params": {},
+  "validation": {
+    "n": 612,
+    "stations": 3,
+    "mae": 10.987340680297788,
+    "rmse": 17.102164957572906,
+    "bias": 1.08090995978511,
+    "high_n": 180,
+    "high_mae": 18.92334374372188,
+    "high_rmse": 24.512023815879445,
+    "high_day_n": 213,
+    "high_day_mae": 19.827229835929277,
+    "station_macro_mae": 13.614320346620422
+  }
+}

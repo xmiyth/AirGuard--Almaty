@@ -1,0 +1,14 @@
+{
+  "fit_candidate_rows": 6983,
+  "fit_used_rows": 1946,
+  "validation_candidate_rows": 1217,
+  "validation_used_rows": 612,
+  "validation_station_counts": {
+    "oaq_8876": 273,
+    "kgmt_300": 254,
+    "kgmt_159": 85
+  },
+  "refit_rows": 9088,
+  "test_evaluation_count": 0,
+  "reason": "Validation-only alias correction; the original test has already been evaluated once."
+}

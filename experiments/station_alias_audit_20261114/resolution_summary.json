@@ -1,0 +1,24 @@
+{
+  "evaluation_status": "EXPLORATORY",
+  "new_test_scores": 0,
+  "untouched_historical_test_certified": false,
+  "original_train_ids": 148,
+  "original_test_ids": 37,
+  "raw_station_ids": 239,
+  "lineage_groups": 226,
+  "conservative_site_groups": 216,
+  "original_train_test_crossing_groups": 2,
+  "first_fit_validation_crossing_groups": 1,
+  "previous_fit_validation_crossing_groups": 0,
+  "active_original_training_ids": 21,
+  "active_train_ids_quarantined_for_test_group": [
+    "kgmt_55",
+    "waqi_82475"
+  ],
+  "original_daily_rows_with_fewer_than_12_distinct_clock_hours": 0,
+  "proposed_prospective_station_ids": 29,
+  "proposed_prospective_site_groups": 29,
+  "protected_files_unchanged": true,
+  "no_production_or_experimental_models_written": true,
+  "policy_sha256": "fbf1fc0b6afe76f48ea5eca992637a5493fa35308ec2008eb2ca51aa3585307d"
+}

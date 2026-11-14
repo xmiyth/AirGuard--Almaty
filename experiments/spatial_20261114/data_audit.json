@@ -1,0 +1,53 @@
+{
+  "fit_candidate_rows": 7063,
+  "fit_used_rows": 1946,
+  "validation_candidate_rows": 1101,
+  "validation_used_rows": 651,
+  "refit_rows": 9434,
+  "original_model_training": {
+    "n": 9434,
+    "stations": 19,
+    "mae": 6.214003299445996,
+    "rmse": 11.901638531099618,
+    "bias": 0.0328835258540397,
+    "high_n": 2350,
+    "high_mae": 13.839578344193049,
+    "high_rmse": 21.115072451221653,
+    "high_day_n": 2613,
+    "high_day_mae": 12.999784863857382,
+    "station_macro_mae": 5.688306222450593
+  },
+  "original_idw_training": {
+    "n": 9434,
+    "stations": 19,
+    "mae": 14.224568517554907,
+    "rmse": 26.48077252314048,
+    "bias": -0.6771211966807171,
+    "high_n": 2350,
+    "high_mae": 29.76538841901296,
+    "high_rmse": 42.557720821926274,
+    "high_day_n": 2613,
+    "high_day_mae": 32.5973242346504,
+    "station_macro_mae": 13.779673889494177
+  },
+  "training_target_mean": 30.1622560268648,
+  "training_nearest_km_mean": 3.2825892321048573,
+  "training_reference_count_mean": 8.163345346618614,
+  "colocated_training_rows": 346,
+  "validation_station_counts": {
+    "oaq_8876": 273,
+    "kgmt_300": 254,
+    "kgmt_159": 85,
+    "oaq_2812831": 39
+  },
+  "training_source_counts": {
+    "kgmt": 11022,
+    "oaq": 1697,
+    "waqi": 1355
+  },
+  "test_target_mean": 34.80330685058884,
+  "test_nearest_km_mean": 1.4664765040144856,
+  "test_reference_count_mean": 108.10416666666667,
+  "colocated_test_rows": 0,
+  "elapsed_seconds": 28.35899999999674
+}

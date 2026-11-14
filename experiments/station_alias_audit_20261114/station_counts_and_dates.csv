@@ -1,0 +1,7 @@
+stage,station_ids,site_groups,rows,date_from,date_to
+original_training_period,21,19,14074,2020-04-10,2025-04-17
+curated_training_period,16,16,12334,2020-04-10,2025-04-17
+fit_candidates,8,8,6366,2020-07-14,2024-01-21
+validation_candidates,4,4,1101,2024-01-22,2025-04-17
+fit_evaluated,3,3,1255,2021-03-24,2023-11-19
+validation_evaluated,3,3,542,2024-01-22,2025-04-11

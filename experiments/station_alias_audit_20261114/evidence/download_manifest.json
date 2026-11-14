@@ -1,0 +1,35 @@
+{
+  "commit": "98ad95f7f60cd4517e45947a429d92626d238889",
+  "files": [
+    {
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/qazybekb/AirDatakz-OpenData/98ad95f7f60cd4517e45947a429d92626d238889/README.md",
+      "sha256": "d559444a67a76eaf43f604a5a00d3e3ffdd71a17b7e3cb2c9b38233bc9549b36",
+      "retrieved_at_utc": "2026-11-14T10:13:27.065515+00:00"
+    },
+    {
+      "file": "DATASHEET.md",
+      "url": "https://raw.githubusercontent.com/qazybekb/AirDatakz-OpenData/98ad95f7f60cd4517e45947a429d92626d238889/DATASHEET.md",
+      "sha256": "4d9d7b4999611e6ede90f1fd8865f4130f3972efa5266905667194c076520166",
+      "retrieved_at_utc": "2026-11-14T10:13:27.711565+00:00"
+    },
+    {
+      "file": "DATA_DICTIONARY.md",
+      "url": "https://raw.githubusercontent.com/qazybekb/AirDatakz-OpenData/98ad95f7f60cd4517e45947a429d92626d238889/DATA_DICTIONARY.md",
+      "sha256": "fcb07a4313803a95ec7b65075a0ce1a850de14b0917136196cf1aca1cca82752",
+      "retrieved_at_utc": "2026-11-14T10:13:28.343594+00:00"
+    },
+    {
+      "file": "stations.csv",
+      "url": "https://raw.githubusercontent.com/qazybekb/AirDatakz-OpenData/98ad95f7f60cd4517e45947a429d92626d238889/stations.csv",
+      "sha256": "6b63539797b50acd4c9d73fd0df37b911f5e74d5bf13bb34c15be850371d1f8b",
+      "retrieved_at_utc": "2026-11-14T10:13:29.022591+00:00"
+    },
+    {
+      "file": "station_periods.csv",
+      "url": "https://raw.githubusercontent.com/qazybekb/AirDatakz-OpenData/98ad95f7f60cd4517e45947a429d92626d238889/station_periods.csv",
+      "sha256": "71f7ba4822f299c95d37598775ba5877f61c1a352adc93ce8f1d728a5e0235f9",
+      "retrieved_at_utc": "2026-11-14T10:13:29.632305+00:00"
+    }
+  ]
+}

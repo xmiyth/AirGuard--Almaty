@@ -1,0 +1,4 @@
+site_group,members,original_train_test_crossing,first_fit_validation_crossing,previous_fit_validation_crossing,resolution
+site_ag_167642,ag_167642|oaq_6175521|waqi_-410893|waqi_82475,True,False,False,test_quarantine
+site_ag_167709,ag_167709|kgmt_55,True,False,False,test_quarantine
+site_oaq_2812831,oaq_2812831|waqi_dxkuv4229,False,True,False,validation

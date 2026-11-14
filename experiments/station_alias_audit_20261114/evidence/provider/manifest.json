@@ -1,0 +1,56 @@
+[
+  {
+    "file": "waqi_clarity_arena.html",
+    "url": "https://aqicn.org/station/kazakhstan-alatau-district-almaty-arena/",
+    "retrieved_at_utc": "2026-11-14T10:15:26.005366+00:00",
+    "status": 200,
+    "final_url": "https://aqicn.org/station/kazakhstan-alatau-district-almaty-arena/",
+    "sha256": "a2cd4178fba64f22f4ac85f21517a5b1afe4aaa9a4ad2203fcbea3b071f9ce51",
+    "bytes": 186911
+  },
+  {
+    "file": "waqi_clarity_road.html",
+    "url": "https://aqicn.org/station/clarity/dxkuv4229/",
+    "retrieved_at_utc": "2026-11-14T10:15:26.005366+00:00",
+    "status": 200,
+    "final_url": "https://aqicn.org/station/kazakhstan-alatau-district-almaty-industrial-zone-road/",
+    "sha256": "d76d4cd68a889f08d6a29385024e0592681c62de722a9e1373023bc121e482d1",
+    "bytes": 188536
+  },
+  {
+    "file": "waqi_embassy.html",
+    "url": "https://aqicn.org/data-platform/api/H12774/",
+    "retrieved_at_utc": "2026-11-14T10:15:26.005924+00:00",
+    "status": 200,
+    "final_url": "https://aqicn.org/data-platform/api/H12774/",
+    "sha256": "3dc65265b00c93f19da7c057a669742f7c6ac9dea138690a3dcf02598ca28a81",
+    "bytes": 64818
+  },
+  {
+    "file": "openaq_arena.html",
+    "url": "https://explore.openaq.org/locations/2812550",
+    "retrieved_at_utc": "2026-11-14T10:15:26.005924+00:00",
+    "status": 200,
+    "final_url": "https://explore.openaq.org/locations/2812550",
+    "sha256": "17a06267f52e54a4d30cc6fe5604cca9cefb6196b6f0e0585577ec8eb4fca20c",
+    "bytes": 59110
+  },
+  {
+    "file": "openaq_road.html",
+    "url": "https://explore.openaq.org/locations/2812831",
+    "retrieved_at_utc": "2026-11-14T10:15:27.290758+00:00",
+    "status": 200,
+    "final_url": "https://explore.openaq.org/locations/2812831",
+    "sha256": "f08d3709bee5f40f007bec5b5170b6442692e26280b45b731acdd1526ad14baa",
+    "bytes": 59266
+  },
+  {
+    "file": "openaq_api_arena.json",
+    "url": "https://api.openaq.org/v3/locations/2812550",
+    "retrieved_at_utc": "2026-11-14T10:15:27.906669+00:00",
+    "status": 401,
+    "final_url": "https://api.openaq.org/v3/locations/2812550",
+    "sha256": "54fce41197d7e4e5a3a8c3cbb9617976606b1cc40a32d4792144aefd6be9f72d",
+    "bytes": 86
+  }
+]

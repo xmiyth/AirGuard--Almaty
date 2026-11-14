@@ -1,0 +1,138 @@
+{
+  "idw_k": [
+    1,
+    3,
+    4,
+    8,
+    12,
+    20
+  ],
+  "idw_p": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "idw_floor": [
+    0.05,
+    0.15,
+    0.5
+  ],
+  "model_grid": {
+    "random_forest": [
+      {
+        "min_samples_leaf": 8,
+        "max_depth": 12,
+        "max_features": 0.8
+      },
+      {
+        "min_samples_leaf": 25,
+        "max_depth": 10,
+        "max_features": 0.8
+      },
+      {
+        "min_samples_leaf": 60,
+        "max_depth": 8,
+        "max_features": 0.8
+      }
+    ],
+    "hist_gradient_boosting": [
+      {
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 40,
+        "l2_regularization": 10,
+        "loss": "squared_error"
+      },
+      {
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 40,
+        "l2_regularization": 20,
+        "loss": "squared_error"
+      },
+      {
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 40,
+        "l2_regularization": 10,
+        "loss": "absolute_error"
+      }
+    ],
+    "residual_rf": [
+      {
+        "min_samples_leaf": 25,
+        "max_depth": 8,
+        "max_features": 0.8
+      },
+      {
+        "min_samples_leaf": 60,
+        "max_depth": 6,
+        "max_features": 0.8
+      }
+    ],
+    "residual_hgb": [
+      {
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 60,
+        "l2_regularization": 20,
+        "loss": "squared_error"
+      },
+      {
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 60,
+        "l2_regularization": 20,
+        "loss": "absolute_error"
+      }
+    ]
+  },
+  "residual_alpha": [
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "features": [
+    "lat",
+    "lon",
+    "month_sin",
+    "month_cos",
+    "nearest_km",
+    "neighbors_3km",
+    "neighbors_5km",
+    "reference_count",
+    "reference_mean",
+    "spread",
+    "near1_pm25",
+    "near1_km",
+    "near1_lat",
+    "near1_lon",
+    "near2_pm25",
+    "near2_km",
+    "near2_lat",
+    "near2_lon",
+    "near3_pm25",
+    "near3_km",
+    "near3_lat",
+    "near3_lon",
+    "near4_pm25",
+    "near4_km",
+    "near4_lat",
+    "near4_lon",
+    "near5_pm25",
+    "near5_km",
+    "near5_lat",
+    "near5_lon",
+    "near6_pm25",
+    "near6_km",
+    "near6_lat",
+    "near6_lon",
+    "near7_pm25",
+    "near7_km",
+    "near7_lat",
+    "near7_lon",
+    "near8_pm25",
+    "near8_km",
+    "near8_lat",
+    "near8_lon",
+    "idw_k8_p2_floor0.15",
+    "idw_k12_p1_floor0.05",
+    "idw_k4_p2_floor0.15"
+  ]
+}
