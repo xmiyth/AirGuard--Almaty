@@ -22,6 +22,7 @@ from airguard import DATA, predict_from_inputs, read_daily
 from station_map import daily_stations, map_figure
 from spatial_ai import latest_map, results_summary
 from pollution_time_machine import build_time_machine, render_day, end_index
+from ui_maps import basemap_style, apply_basemap
 
 RESULTS = DATA/'results.json'
 COLORS = [(0, (255, 247, 188)), (.25, (254, 196, 79)),
@@ -51,7 +52,8 @@ THEME = gr.themes.Base(primary_hue='teal', neutral_hue='slate',
     font=['Segoe UI', 'system-ui', 'sans-serif']).set(
         **THEME_VALUES, **{k+'_dark': v for k, v in THEME_VALUES.items()},
         block_radius='16px', input_radius='10px', button_large_radius='10px')
-# Native Gradio handles navigation. JS only sets the theme and dismisses tooltips.
+# Native Gradio handles navigation; the small JS hook repairs plot sizing and
+# reports basemap errors without changing data or making backend requests.
 UI_JS = """() => {
   document.documentElement.classList.add('dark');
   if (window.airguardTooltipsReady) return;
@@ -61,6 +63,42 @@ UI_JS = """() => {
   });
   document.addEventListener('focusin', event => event.target.closest?.('.tip-wrap')?.classList.remove('dismissed'));
   document.addEventListener('pointerover', event => event.target.closest?.('.tip-wrap')?.classList.remove('dismissed'));
+  const plots = new WeakSet(), maps = new WeakSet();
+  const resize = new ResizeObserver(entries => {
+    for (const {target, contentRect} of entries) {
+      if (contentRect.width && contentRect.height && target._fullLayout && window.Plotly)
+        window.Plotly.Plots.resize(target).catch(() => {});
+    }
+  });
+  const bind = () => document.querySelectorAll('[data-testid="plotly"]').forEach(plot => {
+    if (plots.has(plot) || !plot.on) return;
+    plots.add(plot);
+    resize.observe(plot);
+    const bindMap = () => {
+      const map = plot._fullLayout?.map?._subplot?.map;
+      if (!map || maps.has(map)) return;
+      maps.add(map);
+      // MapLibre must remeasure its canvas after a hidden tab becomes visible.
+      requestAnimationFrame(() => map.resize());
+      if (!plot.closest('#pollution-map')) return;
+      const status = () => document.getElementById('map-network-status');
+      map.on('error', () => {
+        if (status()) status().textContent = 'Some map tiles or labels could not load. Check your connection, switch basemap, or refresh the map. Local pollution layers remain available.';
+      });
+      map.on('idle', () => {
+        if (map.areTilesLoaded() && status()) status().textContent = '';
+      });
+    };
+    plot.on('plotly_afterplot', bindMap);
+    bindMap();
+  });
+  let scheduled = false;
+  new MutationObserver(() => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => { scheduled = false; bind(); });
+  }).observe(document.querySelector('.gradio-container') || document.body, {childList: true, subtree: true});
+  bind();
 }"""
 
 
@@ -123,7 +161,8 @@ def style_map(fig, estimated=False):
         hoverlabel=dict(bgcolor='#152c3f', bordercolor='#638397', font=dict(size=12, color='#f3f8fc')),
         margin=dict(l=0, r=0, t=0, b=80), showlegend=False,
         modebar_add=['zoomInMap', 'zoomOutMap', 'resetViewMap'],
-        map=dict(style='carto-darkmatter'), uirevision='airguard-map')
+        map=dict(style=basemap_style()), uirevision='airguard-map',
+        clickmode='event+select')
     if estimated:
         fig.data[1].name = 'Measured reference stations'
         fig.data[1].marker.update(size=9, color='#173a4a')
@@ -187,6 +226,8 @@ def station_hover(trace, rows, day, reference=False):
     trace.hovertemplate = ('<b>%{customdata[0]}</b><br>' + label +
         '<br><b>%{customdata[1]:.1f} µg/m³</b> PM2.5<br>%{customdata[2]} · local-day average<extra></extra>')
     trace.name = 'Measured reference stations' if reference else 'Measured station averages'
+    trace.selected = dict(marker=dict(size=16, opacity=1))
+    trace.unselected = dict(marker=dict(opacity=.45))
 
 
 def marker_halo(fig, trace):
@@ -211,7 +252,7 @@ def safe_map():
         table = shown.sort_values('pm25', ascending=False)[['station_name', 'pm25', 'date', 'hours']].head(30)
         return summary, fig, table.round({'pm25': 1})
     except Exception as exc:
-        return f'Measured map unavailable: {exc}', None, pd.DataFrame()
+        return f'Measured map unavailable: {exc}', empty_chart('Measured map unavailable · try Refresh map', 570), pd.DataFrame()
 
 
 @lru_cache(maxsize=1)
@@ -241,7 +282,7 @@ def safe_spatial():
         summary, fig = spatial_snapshot(file_stamp('almaty_stations_pm25.csv.gz'), file_stamp('spatial_model.joblib'))
         return summary, go.Figure(fig)  # Per-request copy; never mutate cached views.
     except Exception as exc:
-        return f'Estimated map unavailable: {exc}. Choose Measured stations to view observations.', None
+        return f'Estimated map unavailable: {exc}. Choose Measured stations to view observations.', empty_chart('Estimate unavailable · choose Measured stations', 570)
 
 
 def load_explorer(mode, basemap='Dark', labels=False):
@@ -251,7 +292,7 @@ def load_explorer(mode, basemap='Dark', labels=False):
         summary, fig = safe_spatial()
         table = pd.DataFrame()
     if fig is not None:
-        fig.update_layout(map_style='carto-darkmatter' if basemap == 'Dark' else 'open-street-map')
+        apply_basemap(fig, basemap)
         for trace in fig.data:
             if trace.name in ('Measured station averages', 'Measured reference stations'):
                 trace.mode = 'markers+text' if labels else 'markers'
@@ -347,7 +388,9 @@ def load_overview():
         recent = df[(df.date >= start.strftime('%Y-%m-%d')) & (df.date <= day)]
         daily = recent.groupby('date').pm25.agg(median='median', low=lambda x:x.quantile(.25),
                                                high=lambda x:x.quantile(.75), count='size')
-        days = pd.date_range(start, day).strftime('%Y-%m-%d')
+        # Plain ISO date lists plus an explicit date axis prevent numeric/time
+        # inference across Plotly/Gradio versions. Missing calendar days stay gaps.
+        days = pd.date_range(start, day).strftime('%Y-%m-%d').tolist()
         daily = daily.reindex(days)
         trend = go.Figure()
         trend.add_trace(go.Scatter(x=days, y=daily.high, mode='lines', line_width=0,
@@ -358,8 +401,12 @@ def load_overview():
         trend.add_trace(go.Scatter(x=days, y=daily['median'], mode='lines',
             line=dict(color=ACCENT, width=3), name='Station median', connectgaps=False,
             customdata=daily[['count']].to_numpy(),
-            hovertemplate='<b>%{x}</b><br>Measured station median: %{y:.1f} µg/m³<br>%{customdata[0]:.0f} reporting IDs<extra></extra>'))
+            hovertemplate='<b>%{x|%d %b %Y}</b><br>Measured station median: %{y:.1f} µg/m³<br>%{customdata[0]:.0f} reporting IDs<extra></extra>'))
         chart_style(trend, 320)
+        trend.update_xaxes(type='date', tickformat='%d %b', hoverformat='%d %b %Y',
+                           tick0=days[0], dtick=7*86400000, range=[days[0], days[-1]],
+                           title_text=f'Local observation date · {start:%Y}', showspikes=True,
+                           spikecolor=ACCENT, spikethickness=1)
         trend.update_yaxes(title_text='PM2.5 · µg/m³', rangemode='tozero')
         top = shown.nlargest(8, 'pm25').sort_values('pm25')
         ranking = go.Figure(go.Bar(x=top.pm25, y=[escape(str(x))[:24] for x in top.station_name],
@@ -401,7 +448,7 @@ def forecast_dashboard(pm25, yesterday, temp, wind, rain, humidity, observation_
         value = predict_from_inputs(*values, forecast_date=observation_date)
         if not np.isfinite(value):
             raise ValueError('The saved model did not return a finite prediction.')
-        card = (f'<div class="forecast-card" role="status"><span class="badge accent">FORECAST · NOT MEASURED</span>'
+        card = (f'<div class="forecast-card forecast-ready" role="status"><span class="badge accent">FORECAST · NOT MEASURED</span>'
                 f'<h3>Estimated PM2.5 for {target:%d %b %Y}</h3><div class="forecast-value">{value:.1f} <small>µg/m³</small></div>'
                 '<p>A statistical next-day forecast from the saved CAMS/Open-Meteo model. '
                 'This is not a prediction for a specific street or a medical recommendation.</p>'
@@ -418,7 +465,7 @@ def forecast_dashboard(pm25, yesterday, temp, wind, rain, humidity, observation_
             hovertemplate='%{x|%Y-%m-%d}<br>FORECAST · not measured: %{y:.1f} µg/m³<extra></extra>'))
         chart_style(fig, 245)
         fig.update_yaxes(title_text='PM2.5 · µg/m³', rangemode='tozero')
-        fig.update_xaxes(tickformat='%d %b', dtick=86400000)
+        fig.update_xaxes(type='date', tickformat='%d %b', dtick=86400000)
         return card, fig
     except Exception as exc:
         return notice(f'Please check your inputs. {exc}', 'error'), empty_chart('No forecast calculated', 245)
@@ -465,6 +512,53 @@ def forecast_evaluation_chart():
     except Exception:
         return empty_chart('Saved forecast results unavailable')
 
+def grouped_validation_panel():
+    """Read saved exploratory scores only; never fit or select a map model."""
+    labels = {
+        'previously_selected_tuned_idw': 'Previously tuned IDW',
+        'relative_residual_hgb': 'Residual HGB · relative features',
+        'fixed_residual_hgb': 'Residual HGB',
+        'fixed_residual_rf': 'Residual Random Forest',
+        'original_idw_settings': 'Original IDW settings',
+        'fixed_random_forest': 'Random Forest',
+        'fixed_hist_gradient_boosting': 'HistGradientBoosting',
+    }
+    try:
+        folder = Path(__file__).parent / 'experiments' / 'grouped_validation'
+        scores = pd.read_csv(folder / 'comparison.csv').sort_values('mae')
+        manifest = json.loads((folder / 'split_manifest.json').read_text(encoding='utf-8'))
+        if set(scores.method) != set(labels) or len(scores) != 7:
+            raise ValueError('Expected the seven documented spatial methods.')
+        table = scores[['method', 'mae', 'rmse']].copy()
+        table['method'] = table.method.map(labels)
+        table.columns = ['Spatial method', 'MAE · µg/m³', 'RMSE · µg/m³']
+        fig = go.Figure()
+        for key, color in [('mae', ACCENT), ('rmse', '#93b5f2')]:
+            fig.add_trace(go.Bar(x=scores[key].tolist(), y=table['Spatial method'].tolist(),
+                orientation='h', name=key.upper(), marker_color=color,
+                text=[f'{v:.3f}' for v in scores[key]], textposition='outside', cliponaxis=False,
+                hovertemplate='%{y}<br>'+key.upper()+': %{x:.3f} µg/m³<extra></extra>'))
+        chart_style(fig, 420)
+        fig.update_layout(barmode='group', bargap=.26, margin=dict(l=8, r=50, t=45, b=45))
+        fig.update_yaxes(autorange='reversed', automargin=True, tickfont_size=11)
+        fig.update_xaxes(title_text='Error · µg/m³ · lower is better',
+                         range=[0, float(scores.rmse.max())*1.18])
+        end = pd.Timestamp(manifest['validation_until_exclusive']) - pd.Timedelta(days=1)
+        summary = (f"**Exploratory grouped validation · {manifest['validation_from_inclusive']} to {end:%Y-%m-%d}**\n\n"
+            f"Five folds holding out entire site groups · **{int(scores.n.iloc[0]):,} station-days** · "
+            f"**{int(scores.stations.iloc[0])} sites** · identical scored rows across all seven methods.\n\n"
+            '**Previously tuned IDW has the lowest MAE and RMSE. ML did not outperform it.** '
+            'The closest residual HGB candidate is only 0.0034 µg/m³ worse on MAE; '
+            'this is not evidence of a meaningful performance difference.\n\n'
+            'These newer results are **separate from the original evaluation below**, not a fresh independent test. '
+            'The grouping registry uses the audited snapshot, including validation dates; network coverage changes over time. '
+            'The historical test remains quarantined. Future dates and a site roster frozen before collection are needed for confirmation. '
+            'The deployed model and interpolation settings are unchanged.')
+        return summary, fig, table.round(3)
+    except Exception as exc:
+        return f'Grouped validation unavailable: {exc}', empty_chart('Saved grouped scores unavailable'), pd.DataFrame()
+
+
 with gr.Blocks(title='Almaty AirGuard', analytics_enabled=False) as demo:
     gr.HTML('<header class="brandbar"><div class="brand"><div class="brand-mark" aria-hidden="true">'
         '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" stroke="#9af2db" stroke-width="1.8" stroke-linecap="round">'
@@ -507,11 +601,13 @@ with gr.Blocks(title='Almaty AirGuard', analytics_enabled=False) as demo:
             map_summary = gr.Markdown('Open this tab to load the latest supported map. Data is historical, not live.')
             with gr.Group(elem_classes='map-shell'):
                 map_plot = gr.Plot(empty_chart('Preparing your map…', 570), show_label=False, elem_id='pollution-map')
+            gr.HTML('<div id="map-network-status" class="map-network-status" role="status" aria-live="polite"></div>', js_on_load=None)
             gr.HTML('<div class="map-key"><span><i class="gradient" aria-hidden="true"></i>Heatmap: estimated concentration</span>'
                 '<span><i class="dot" aria-hidden="true"></i>Ring markers: measured stations</span>'
                 '<span><i class="blank" aria-hidden="true"></i>Blank: no supported estimate</span></div>', js_on_load=None)
             gr.HTML(notice('Higher PM2.5 runs from pale yellow through orange to purple; these colors are not an official AQI. '
-                'Hover or tap markers for values and dates. In the measured view, marker colors show actual station readings. '
+                'Hover or tap markers for values and dates; click a station to highlight it (Shift-click to add another). '
+                'In the measured view, marker colors show actual station readings. '
                 'Use the map’s zoom and reset controls; unsupported areas remain transparent.'), js_on_load=None)
             with gr.Accordion('Coverage, smoothing & measurement limitations', open=False):
                 gr.Markdown('The heatmap smooths the **existing prediction grid**, without fitting a new model. '
@@ -554,6 +650,16 @@ with gr.Blocks(title='Almaty AirGuard', analytics_enabled=False) as demo:
                     gr.HTML(notice('No calibrated uncertainty interval is available. This prototype is not an operational air-quality alert or medical recommendation.'), js_on_load=None)
         with gr.Tab('Model insights', id='insights'):
             gr.HTML(intro('The evidence behind the estimates.', 'Explore saved model results in their original units. Lower prediction error is better.'), js_on_load=None)
+            with gr.Column(elem_classes='panel'):
+                gr.Markdown('### Seven methods, one grouped comparison')
+                grouped_text, grouped_chart, grouped_table = grouped_validation_panel()
+                gr.Markdown(grouped_text)
+                gr.Plot(grouped_chart, show_label=False, elem_classes='plot-panel')
+                with gr.Accordion('All seven methods · scores rounded to 3 decimals', open=False):
+                    gr.Dataframe(grouped_table, interactive=False, label='Exploratory spatial validation')
+                    gr.Markdown('Source: `experiments/grouped_validation/comparison.csv` and `split_manifest.json`. '
+                                'Protocol: `experiments/GROUPED_SPATIAL_VALIDATION.md`. HGB = Histogram Gradient Boosting.')
+            gr.Markdown('### Original saved evaluations')
             gr.HTML(notice('Historical, exploratory results. The old test set has already been inspected, and some station feeds share sites or possible sensor identities. '
                 'These saved scores are not fresh, independent test confirmation.', 'warning'), js_on_load=None)
             metric = gr.Radio(['MAE','RMSE'], value='MAE', label='Spatial error metric')
@@ -584,7 +690,7 @@ with gr.Blocks(title='Almaty AirGuard', analytics_enabled=False) as demo:
     gr.HTML('<footer class="footer-note"><span>AirGuard · Built for Veritas AI<br>Research prototype. Measurements, interpolation and forecasts are distinct.</span>'
         '<span>Sources: <a href="https://github.com/qazybekb/AirDatakz-OpenData" target="_blank" rel="noopener">AirData.kz</a> · '
         '<a href="https://open-meteo.com/en/docs/air-quality-api" target="_blank" rel="noopener">Open-Meteo</a><br>'
-        'Basemaps: © OpenStreetMap contributors · © CARTO</span></footer>', js_on_load=None)
+        'Basemaps: © OpenStreetMap contributors</span></footer>', js_on_load=None)
     overview_outputs = [overview_cards, trend_plot, ranking_plot, overview_status]
     demo.load(load_overview, outputs=overview_outputs, show_progress='minimal', concurrency_id='station-read', concurrency_limit=1)
     refresh.click(load_overview, outputs=overview_outputs, show_progress='minimal', concurrency_id='station-read', concurrency_limit=1)
@@ -594,8 +700,9 @@ with gr.Blocks(title='Almaty AirGuard', analytics_enabled=False) as demo:
           fn=load_explorer, inputs=map_inputs, outputs=map_outputs, show_progress='minimal',
           show_progress_on=map_plot, concurrency_id='station-read', concurrency_limit=1, trigger_mode='always_last')
     # Render the historical map only when the user opens this tab.
-    time_tab.select(fn=lambda: render_day(end_index()),
-        outputs=[time_summary, time_plot, time_table], show_progress='minimal')
+    time_tab.select(fn=render_day, inputs=time_slider,
+        outputs=[time_summary, time_plot, time_table], show_progress='minimal',
+        concurrency_id='time-read', concurrency_limit=1, trigger_mode='always_last')
     forecast_inputs = [today,prev,temp,wind,rain,humid,day]
     forecast_outputs = [forecast_card,forecast_plot]
     forecast_btn.click(forecast_dashboard, forecast_inputs, forecast_outputs, show_progress='minimal', show_progress_on=forecast_card)

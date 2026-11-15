@@ -5,12 +5,14 @@ Depends on the existing station_map.daily_stations() and its local dataset.
 """
 from functools import lru_cache
 from pathlib import Path
+from html import escape
 
 import gradio as gr
 import pandas as pd
 import plotly.graph_objects as go
 
 from station_map import STATION_FILE, daily_stations
+from ui_maps import basemap_style
 
 MAP_CENTER = {"lat": 43.2389, "lon": 76.8897}
 PM25_SCALE_MAX = 75  # Consistent scale on every day; higher values clamp to top color.
@@ -40,21 +42,26 @@ def plot_for_date(date, data):
     chosen = data[data["date"] == date].copy()
     fig = go.Figure()
     hover = [
-        f"<b>{name}</b><br>Measured daily PM2.5: {pm:.1f} µg/m³"
+        f"<b>{escape(str(name))}</b><br>Measured daily PM2.5: {pm:.1f} µg/m³"
         f"<br>{date}<br>{hours} hourly reports"
         for name, pm, hours in zip(chosen["station_name"], chosen["pm25"], chosen["hours"])
     ]
     fig.add_trace(go.Scattermap(
         lat=chosen["lat"], lon=chosen["lon"], mode="markers",
         text=hover, hoverinfo="text", name="Measured daily averages",
-        marker=dict(size=12, color=chosen["pm25"], colorscale="RdYlGn_r",
+        marker=dict(size=12, color=chosen["pm25"], colorscale=['#fff7bc','#fec44f','#f46d43','#be2457','#532370'],
                     cmin=0, cmax=PM25_SCALE_MAX, showscale=True,
-                    colorbar=dict(title="PM2.5", ticksuffix=" µg/m³")),
+                    colorbar=dict(title="PM2.5 · µg/m³", orientation='h',
+                                  x=.5, xanchor='center', y=-.07, len=.8, thickness=10)),
+        selected=dict(marker=dict(size=17, opacity=1)),
+        unselected=dict(marker=dict(opacity=.45)),
     ))
     fig.update_layout(
-        map=dict(style="open-street-map", center=MAP_CENTER, zoom=10),
-        height=510, margin=dict(t=4, b=4, l=0, r=0),
-        showlegend=False, uirevision="airguard-time-machine",
+        map=dict(style=basemap_style(), center=MAP_CENTER, zoom=10),
+        height=540, margin=dict(t=4, b=80, l=0, r=0), template='plotly_dark',
+        paper_bgcolor='#0c1725', font=dict(family='Segoe UI, sans-serif', color='#c3d6e5'),
+        hoverlabel=dict(bgcolor='#152c3f', bordercolor='#638397', font_color='#f3f8fc'),
+        showlegend=False, uirevision="airguard-time-machine", clickmode='event+select',
     )
     return fig
 
@@ -85,7 +92,7 @@ def dataset_description():
     try:
         _, dates = dataset()
         return (f"Explore **{len(dates):,} dates**, from **{dates[0]}** to **{dates[-1]}**. "
-                "Move the slider to change days. This uses historical monitoring-station readings.")
+                "Choose a date or move the slider through available reporting days. Gaps in reporting are skipped.")
     except Exception as exc:
         return f"Unable to load available dates: {exc}"
 
@@ -99,19 +106,34 @@ def end_index():
 
 def build_time_machine():
     """Call INSIDE an existing `with gr.Tab(...):` block, or a Gradio Blocks app."""
-    gr.Markdown("## 🕰️ Pollution Time Machine\nTravel through Almaty's *historical measured* air pollution, day by day.")
     gr.Markdown(dataset_description())
     last = end_index()
+    try:
+        dates = dataset()[1]
+    except Exception:
+        dates = []
     with gr.Row():
-        back = gr.Button("← Previous day", size="sm")
-        forward = gr.Button("Next day →", size="sm")
+        date_picker = gr.Dropdown(dates, value=dates[-1] if dates else None,
+                                 label='Observation date', interactive=bool(dates), min_width=190)
+        back = gr.Button("← Previous available", size="sm", interactive=last > 0)
+        forward = gr.Button("Next available →", size="sm", interactive=False)
         latest = gr.Button("Latest available", size="sm")
     slider = gr.Slider(minimum=0, maximum=max(1,last), step=1, value=last,
-                       label="Timeline (drag to change date)", interactive=True)
+                       label="Available observation days", interactive=last > 0,
+                       info='Drag or use arrow keys. The date selector shows the selected local date.')
     summary = gr.Markdown()
-    map_plot = gr.Plot(label="Daily station measurements")
-    table = gr.Dataframe(label="Highest-reading stations on selected day", interactive=False)
-    slider.change(render_day, inputs=slider, outputs=[summary,map_plot,table], show_progress="minimal")
+    map_plot = gr.Plot(label="Daily station measurements", elem_classes='map-shell')
+    with gr.Accordion('Highest-reading stations on selected day', open=False):
+        table = gr.Dataframe(label="Measured station averages", interactive=False)
+    def sync_controls(index):
+        i = min(max(int(index), 0), last)
+        return (gr.Dropdown(value=dates[i] if dates else None),
+                gr.Button(interactive=i > 0), gr.Button(interactive=i < last))
+    slider.change(sync_controls, inputs=slider, outputs=[date_picker, back, forward], queue=False)
+    slider.change(render_day, inputs=slider, outputs=[summary,map_plot,table], show_progress="minimal",
+                  concurrency_id='time-read', concurrency_limit=1, trigger_mode='always_last')
+    date_picker.input(lambda date: dates.index(date) if date in dates else last,
+                      inputs=date_picker, outputs=slider, queue=False)
     back.click(lambda i: max(0,int(i)-1), inputs=slider, outputs=slider)
     forward.click(lambda i: min(last,int(i)+1), inputs=slider, outputs=slider)
     latest.click(lambda: last, outputs=slider)
